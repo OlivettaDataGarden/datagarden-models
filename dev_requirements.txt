@@ -1,0 +1,7 @@
+tox
+setuptools
+pytest
+mock
+twine
+
+pydantic
