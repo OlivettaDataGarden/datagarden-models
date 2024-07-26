@@ -19,6 +19,7 @@ class DemographicsV1Keys(
 	MORTALITY = "mortality"
 	FERTILITY = "fertility"
 	LIFE_EXPECTANCY = "life_expectancy"
+	DATAGARDEN_MODEL_NAME = "Demographics"
 
 
 class DemographicsV1Legends:
