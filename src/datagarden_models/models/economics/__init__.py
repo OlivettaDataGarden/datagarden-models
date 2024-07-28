@@ -8,6 +8,8 @@ from .gdp import GDP, GDPV1Keys
 
 class EconomicsV1Keys(GDPV1Keys):
 	GDP = "gdp"
+	DATAGARDEN_MODEL_NAME = "Economics"
+
 
 
 class EconomicsV1Legends:
