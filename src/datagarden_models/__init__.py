@@ -21,21 +21,19 @@ avaialble fieldtypes (to be used to instantiatie specific dataclasses fields)
 
 
 Objects for discovery of available dataclasses
-- ALL_MODEL_CLASSES: List with all data models
-- ALL_GDG_MODEL_NAMES: List with class_names of all dataclasses.
-- model_name_to_model: method to retrieve the actual data class for its name.
+- AVAILABLE_MODELS: List with all data models names (as str)
+- DatagardenModels: Class with all Datagarden models as class constant
+	>>> DatagardenModels.DEMOGRAPHICS  # returns latest version of the Demographic
+	                                     Pydantic data class
+
+- DatagardenModelKeys: Class with all key classes for the Datagarden model classes.
+	>>> keys = DatagardenModelKeys.DEMOGRAPHICS  # returns latest version of the
+	                                               Demographic key class
+	>>> keys.POPULATION  # returns the model key for the POPUPLATION field.
+
 """
 
-from .models import DemographicsV1, DemographicsV1Keys
-from .models.base import DataGardenModel
-
-
-class DatagardenDataModels:
-	DEMOGRAPHICS: type[DataGardenModel] = DemographicsV1
-
-
-class DatagardenDataModelKeys:
-	DEMOGRAPHICS: type = DemographicsV1Keys
+from .models import DatagardenModelKeys, DatagardenModels
 
 
 def get_values_from_class(cls: type):
@@ -45,7 +43,6 @@ def get_values_from_class(cls: type):
 
 
 AVAILABLE_MODELS = [
-	klass.DATAGARDEN_MODEL_NAME
-	for klass in get_values_from_class(DatagardenDataModelKeys)
+	klass.DATAGARDEN_MODEL_NAME for klass in get_values_from_class(DatagardenModels)
 ]
-__all__ = ["DatagardenDataModels", "DatagardenDataModelKeys", "AVAILABLE_MODELS"]
+__all__ = ["DatagardenModels", "DatagardenModelKeys", "AVAILABLE_MODELS"]

@@ -3,9 +3,14 @@ from .demographics import DemographicsV1, DemographicsV1Keys
 from .economics import EconomicsV1, EconomicsV1Keys
 
 
-class DefaultAppModels:
+class DatagardenModels:
 	DEMOGRAPHICS: type[DataGardenModel] = DemographicsV1
 	ECOMOMICS: type[DataGardenModel] = EconomicsV1
 
 
-__all__ = ["DemographicsV1Keys", "EconomicsV1Keys", "DefaultAppModels"]
+class DatagardenModelKeys:
+	DEMOGRAPHICS: type = DemographicsV1Keys
+	ECOMOMICS: type = EconomicsV1Keys
+
+
+__all__ = ["DatagardenModels", "DatagardenModelKeys"]
