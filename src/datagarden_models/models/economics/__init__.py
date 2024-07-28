@@ -11,7 +11,6 @@ class EconomicsV1Keys(GDPV1Keys):
 	DATAGARDEN_MODEL_NAME = "Economics"
 
 
-
 class EconomicsV1Legends:
 	GDP = "Gross Domestic Product"
 	DATAGARDEN_MODEL_VERSION = "Version of the data model."
