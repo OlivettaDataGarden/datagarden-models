@@ -1,19 +1,19 @@
 from pydantic import BaseModel, Field
 
 
-class EconomicValueBaseKeys:
+class EconomicBaseKeys:
 	VALUE = "value"
 	UNIT = "unit"
 	CURRENCY = "currency"
 
 
-class EconomicValueBaseLegends:
+class EconomicBaseLegends:
 	VALUE = "value in units of given currency"
 	UNIT = "units for value"
 	CURRENCY = "currency for value"
 
 
-L = EconomicValueBaseLegends
+L = EconomicBaseLegends
 
 
 class EconomicsValue(BaseModel):
