@@ -1,12 +1,11 @@
 from pydantic import Field
 
 from ..base import DataGardenModel
-
-from .base_economics import EconomicValueBaseKeys
+from .base_economics import EconomicBaseKeys
 from .gdp import GDP, GDPV1Keys
 
 
-class EconomicsV1Keys(GDPV1Keys, EconomicValueBaseKeys):
+class EconomicsV1Keys(GDPV1Keys, EconomicBaseKeys):
 	GDP = "gdp"
 	DATAGARDEN_MODEL_NAME = "Economics"
 
