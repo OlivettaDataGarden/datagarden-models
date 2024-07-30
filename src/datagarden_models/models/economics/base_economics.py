@@ -8,9 +8,9 @@ class EconomicBaseKeys:
 
 
 class EconomicBaseLegends:
-	VALUE = "value in units of given currency"
-	UNIT = "units for value"
-	CURRENCY = "currency for value"
+	VALUE = "value in units of given currency,"
+	UNIT = "units of measure."
+	CURRENCY = "currency of measure."
 
 
 L = EconomicBaseLegends

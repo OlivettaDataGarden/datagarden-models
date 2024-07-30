@@ -42,7 +42,16 @@ def get_values_from_class(cls: type):
 			yield value
 
 
-AVAILABLE_MODELS = [
+AVAILABLE_MODELS_NAMES = [
 	klass.DATAGARDEN_MODEL_NAME for klass in get_values_from_class(DatagardenModelKeys)
 ]
-__all__ = ["DatagardenModels", "DatagardenModelKeys", "AVAILABLE_MODELS"]
+
+AVAILABLE_MODELS = [klass for klass in get_values_from_class(DatagardenModels)]
+
+
+__all__ = [
+	"DatagardenModels",
+	"DatagardenModelKeys",
+	"AVAILABLE_MODELS",
+	"AVAILABLE_MODELS_NAMES",
+]
