@@ -13,8 +13,9 @@ class HealthV1Keys(
 
 class HealthV1Legends(DataGardenModelLegends):
 	DEATH_RATE_BY_IDC10 = (
-		"Death cause by  IDC10 categorization, see https://icd.who.int/browse10/2010/en"
-		" for detailed description of IDC10 categories"
+		"Death rate by IDC10 categorization, see https://icd.who.int/browse10/2010/en"
+		" (for detailed description of IDC10 categories (keys in this dataset))" 
+		" Death rate in deaths per 100.000 population."
 	)
 
 
