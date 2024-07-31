@@ -1,6 +1,6 @@
 from pydantic import Field
 
-from ..base import DataGardenModel
+from ..base import DataGardenModel, DataGardenModelLegends
 from .base_economics import EconomicBaseKeys
 from .gdp import GDP, GDPV1Keys
 
@@ -10,9 +10,8 @@ class EconomicsV1Keys(GDPV1Keys, EconomicBaseKeys):
 	DATAGARDEN_MODEL_NAME = "Economics"
 
 
-class EconomicsV1Legends:
+class EconomicsV1Legends(DataGardenModelLegends):
 	GDP = "Gross Domestic Product"
-	DATAGARDEN_MODEL_VERSION = "Version of the data model."
 
 
 L = EconomicsV1Legends

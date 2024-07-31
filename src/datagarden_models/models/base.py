@@ -3,6 +3,10 @@ from typing import Union, get_args, get_origin
 from pydantic import BaseModel, Field, model_validator
 
 
+class DataGardenModelLegends:
+	DATAGARDEN_MODEL_VERSION = "Version of the data model."
+
+
 class DataGardenModel(BaseModel):
 	datagarden_model_version: str = Field("v1.0", frozen=True)
 

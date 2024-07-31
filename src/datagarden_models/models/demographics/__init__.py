@@ -1,6 +1,6 @@
 from pydantic import Field
 
-from ..base import DataGardenModel
+from ..base import DataGardenModel, DataGardenModelLegends
 from .base_demographics import DemographicsBaseKeys
 from .fertility import Fertility, FertilityV1Keys
 from .life_expectancy import LifeExpectancy, LifeExpectancyV1Keys
@@ -22,12 +22,11 @@ class DemographicsV1Keys(
 	DATAGARDEN_MODEL_NAME = "Demographics"
 
 
-class DemographicsV1Legends:
+class DemographicsV1Legends(DataGardenModelLegends):
 	POPULATION = "Population indicators for the region. "
 	MORTALITY = "Mortality indicators for the region. "
 	FERTILITY = "Fertility indicators for the region. "
 	LIFE_EXPECTANCY = "Life expectancy indicators for the region. "
-	DATAGARDEN_MODEL_VERSION = "Version of the data model."
 
 
 L = DemographicsV1Legends
