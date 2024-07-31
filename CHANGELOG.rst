@@ -2,6 +2,10 @@
 Changelog
 =========
 
+1.2.0 (2024-07-31)
+------------------
+* Added Health model
+
 1.1.4 (2024-07-30)
 ------------------
 * Added AVAILABLE_MODELS_NAMES and AVAILABLE_MODELS to top level import
