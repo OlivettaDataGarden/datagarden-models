@@ -20,3 +20,8 @@ class EconomicsValue(BaseModel):
 	value: float | None = Field(default=None, description=L.VALUE)
 	unit: int = Field(default=1, description=L.UNIT)
 	currency: str = Field(default="EUR", description=L.CURRENCY)
+
+
+class EconomicsUnit(BaseModel):
+	unit: int = Field(default=1, description=L.UNIT)
+	currency: str = Field(default="EUR", description=L.CURRENCY)
