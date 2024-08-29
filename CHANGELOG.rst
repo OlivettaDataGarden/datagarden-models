@@ -2,6 +2,10 @@
 Changelog
 =========
 
+1.2.3 (2024-08-29)
+------------------
+* Added education to the demographics model
+
 1.2.0 (2024-07-31)
 ------------------
 * Added Health model
