@@ -2,7 +2,7 @@
 Changelog
 =========
 
-1.2.3 (2024-08-29)
+1.2.4 (2024-08-29)
 ------------------
 * Added education to the demographics model
 

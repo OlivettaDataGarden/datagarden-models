@@ -22,6 +22,10 @@ class PercentagesByAgeGender(BaseModel):
 	total: dict = Field(default_factory=dict, description=L1.AGE_GENDER_TOTAL)
 
 
+class Isced2011EducationLevelKeys:
+	ISCED_2011_5TO8 = "isced_2011_5to8"
+
+
 class Isced2011EducationLevelLegends:
 	ISCED_2011_5TO8 = (
 		"Level 5 up to and including level 8 of the "
@@ -46,14 +50,17 @@ class EducationV1Legends:
 	)
 
 
-M = EducationV1Legends
+L3 = EducationV1Legends
 
 
 class Education(BaseModel):
 	isced_2011_by_age_gender: Isced2011EducationLevel = Field(
-		default_factory=Isced2011EducationLevel, description=M.ISCED_2011_BY_AGE_GENDER
+		default_factory=Isced2011EducationLevel, description=L3.ISCED_2011_BY_AGE_GENDER
 	)
 
 
-class EducationV1Keys:
+class EducationV1Keys(
+	PercentagesByAgeGenderBaseKeys,
+	Isced2011EducationLevelKeys,
+):
 	ISCED_2011_BY_AGE_GENDER = "isced_2011_by_age_gender"
