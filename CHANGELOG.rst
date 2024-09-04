@@ -2,6 +2,10 @@
 Changelog
 =========
 
+1.2.5 (2024-09-04)
+------------------
+* Added more isced 2011 attributes
+
 1.2.4 (2024-08-29)
 ------------------
 * Added education to the demographics model
