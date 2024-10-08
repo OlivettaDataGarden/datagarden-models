@@ -72,11 +72,13 @@ class DataGardenModel(BaseModel):
 		for field, value in data:
 			if field == "datagarden_model_version":
 				continue
-			
+
 			if isinstance(value, BaseModel):
 				# If one nested model has values then return True
 				if self.has_values(value):
 					return True
-			elif value or value == 0 or value is False:  # This will check for truthy values (non-empty)
+			elif (
+				value or value == 0 or value is False
+			):  # This will check for truthy values (non-empty)
 				return True
 		return False
