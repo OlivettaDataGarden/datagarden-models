@@ -2,6 +2,10 @@
 Changelog
 =========
 
+1.2.6 (2024-10-08)
+------------------
+* Added method to check for empty records
+
 1.2.5 (2024-09-04)
 ------------------
 * Added more isced 2011 attributes
