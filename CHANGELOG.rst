@@ -2,6 +2,10 @@
 Changelog
 =========
 
+1.2.7 (2024-10-16)
+------------------
+* Added GDP at constant prices to the economics model
+
 1.2.6 (2024-10-08)
 ------------------
 * Added method to check for empty records
