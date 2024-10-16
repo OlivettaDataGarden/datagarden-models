@@ -58,9 +58,8 @@ class GDPV1Legends:
 	GDP_PER_INHABITANT = "GDP per inhabitant current value."
 	VALUE_ADDED = "Economic value added current value per region."
 	GDP_AT_CONSTANT_PRICES = "GDP figures at constant prices."
-	TOTAL_GDP_CONSTANT_PRICES = "Total GDP at constant prices."
-	GDP_PER_INHABITANT_CONSTANT_PRICES = "GDP per inhabitant at constant prices."
-	REFERENCE_YEAR = "Reference year for the constant prices."
+	YOY_GROWTH = "Growth versus previous year in percent."
+	YOY_GROWTH_PER_CAPITA = "Growth versus previous year in percent per capita."
 
 
 L = GDPV1Legends
@@ -77,6 +76,10 @@ class GDP(BaseModel):
 	gdp_at_constant_prices: GDPAtConstantPrices = Field(
 		default_factory=GDPAtConstantPrices, description=L.GDP_AT_CONSTANT_PRICES
 	)
+	yoy_growth: float | None = Field(default=None, description=L.YOY_GROWTH)
+	yoy_growth_per_capita: float | None = Field(
+		default=None, description=L.YOY_GROWTH_PER_CAPITA
+	)
 
 
 class GDPV1Keys(ValueAddedKeys, GDPConstantKeys):
@@ -84,3 +87,5 @@ class GDPV1Keys(ValueAddedKeys, GDPConstantKeys):
 	GDP_PER_INHABITANT = "gpd_per_inhabitant"
 	VALUE_ADDED = "value_added"
 	GDP_AT_CONSTANT_PRICES = "gdp_at_constant_prices"
+	YOY_GROWTH = "yoy_growth"
+	YOY_GROWTH_PER_CAPITA = "yoy_growth_per_capita"

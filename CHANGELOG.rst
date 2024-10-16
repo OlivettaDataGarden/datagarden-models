@@ -2,9 +2,10 @@
 Changelog
 =========
 
-1.2.7 (2024-10-16)
+1.2.8 (2024-10-16)
 ------------------
 * Added GDP at constant prices to the economics model
+* Added yoy_growth and yoy_growth_per_capita to the economics model
 
 1.2.6 (2024-10-08)
 ------------------
