@@ -29,10 +29,38 @@ class ValueAdded(BaseModel):
 	)
 
 
+class GDPConstantLegends:
+	TOTAL_GDP_CONSTANT_PRICES = "Total GDP at constant prices."
+	GDP_PER_INHABITANT_CONSTANT_PRICES = "GDP per inhabitant at constant prices."
+	REFERENCE_YEAR = "Reference year for the constant prices."
+
+
+GC = GDPConstantLegends
+
+
+class GDPConstantKeys:
+	REFERENCE_YEAR = "reference_year"
+
+
+class GDPAtConstantPrices(BaseModel):
+	total_gpd: EconomicsValue = Field(
+		default_factory=EconomicsValue, description=GC.TOTAL_GDP_CONSTANT_PRICES
+	)
+	gpd_per_inhabitant: EconomicsValue = Field(
+		default_factory=EconomicsValue,
+		description=GC.GDP_PER_INHABITANT_CONSTANT_PRICES,
+	)
+	reference_year: str | None = Field(default=None, description=GC.REFERENCE_YEAR)
+
+
 class GDPV1Legends:
-	TOTAL_GDP = "Total GDP value for the region."
-	GDP_PER_INHABITANT = "GDP per inhabitant."
-	VALUE_ADDED = "Economic value added data per region."
+	TOTAL_GDP = "Total GDP at current value for the region."
+	GDP_PER_INHABITANT = "GDP per inhabitant current value."
+	VALUE_ADDED = "Economic value added current value per region."
+	GDP_AT_CONSTANT_PRICES = "GDP figures at constant prices."
+	TOTAL_GDP_CONSTANT_PRICES = "Total GDP at constant prices."
+	GDP_PER_INHABITANT_CONSTANT_PRICES = "GDP per inhabitant at constant prices."
+	REFERENCE_YEAR = "Reference year for the constant prices."
 
 
 L = GDPV1Legends
@@ -43,12 +71,16 @@ class GDP(BaseModel):
 		default_factory=EconomicsValue, description=L.TOTAL_GDP
 	)
 	gpd_per_inhabitant: EconomicsValue = Field(
-		default_factory=EconomicsValue, description=L.TOTAL_GDP
+		default_factory=EconomicsValue, description=L.GDP_PER_INHABITANT
 	)
 	value_added: ValueAdded = Field(default_factory=ValueAdded, description=L.TOTAL_GDP)
+	gdp_at_constant_prices: GDPAtConstantPrices = Field(
+		default_factory=GDPAtConstantPrices, description=L.GDP_AT_CONSTANT_PRICES
+	)
 
 
-class GDPV1Keys(ValueAddedKeys):
+class GDPV1Keys(ValueAddedKeys, GDPConstantKeys):
 	TOTAL_GDP = "total_gpd"
 	GDP_PER_INHABITANT = "gpd_per_inhabitant"
 	VALUE_ADDED = "value_added"
+	GDP_AT_CONSTANT_PRICES = "gdp_at_constant_prices"
