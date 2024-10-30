@@ -8,7 +8,11 @@ class DataGardenModelLegends:
 
 
 class DataGardenModel(BaseModel):
-	datagarden_model_version: str = Field("v1.0", frozen=True)
+	datagarden_model_version: str = Field(
+		"v1.0",
+		frozen=True,
+		description=DataGardenModelLegends.DATAGARDEN_MODEL_VERSION,
+	)
 
 	@model_validator(mode="before")
 	def check_datagarden_model_version(cls, values):
