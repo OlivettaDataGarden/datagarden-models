@@ -44,7 +44,7 @@ class WeatherV1Legends(DataGardenModelLegends):
 L = WeatherV1Legends
 
 
-class WeatherObservation(DataGardenModel):
+class WeatherObservationV1(DataGardenModel):
 	datagarden_model_version: str = Field(
 		"v1.0", frozen=True, description=L.DATAGARDEN_MODEL_VERSION
 	)
