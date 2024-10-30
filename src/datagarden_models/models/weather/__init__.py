@@ -1,5 +1,6 @@
-from pydantic import BaseModel, Field
 from typing import Literal, Optional
+
+from pydantic import Field
 
 from datagarden_models.models.base import DataGardenModel, DataGardenModelLegends
 
@@ -66,9 +67,9 @@ class WeatherObservationV1(DataGardenModel):
 	@property
 	def is_empty(self) -> bool:
 		return all(
-			getattr(self, field) is None 
-			for field in self.model_fields 
-			if field not in ['temp_scale', 'datagarden_model_version']
+			getattr(self, field) is None
+			for field in self.model_fields
+			if field not in ["temp_scale", "datagarden_model_version"]
 		)
 
 	def __bool__(self) -> bool:
