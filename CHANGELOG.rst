@@ -2,6 +2,10 @@
 Changelog
 =========
 
+1.3.0 (2024-10-30)
+------------------
+* weather model added
+
 1.2.8 (2024-10-16)
 ------------------
 * Added GDP at constant prices to the economics model
