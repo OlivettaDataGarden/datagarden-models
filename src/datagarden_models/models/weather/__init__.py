@@ -4,10 +4,12 @@ from pydantic import Field
 
 from datagarden_models.models.base import DataGardenModel, DataGardenModelLegends
 
+from .period_totals import WeatherPeriodTotalsV1, WeatherPeriodTotalsV1Keys
+
 TEMP_SCALES: Literal["CELSIUS", "FAHRENHEID"]
 
 
-class WeatherV1Keys:
+class WeatherV1Keys(WeatherPeriodTotalsV1Keys):
 	MIN_TEMP = "min_temp"
 	MAX_TEMP = "max_temp"
 	MEAN_TEMP = "mean_temp"
@@ -23,6 +25,7 @@ class WeatherV1Keys:
 	RADIATION_PER_SQUARE_M = "radiation_per_square_m"
 	HUMIDITY = "humidity"
 	DATAGARDEN_MODEL_NAME = "WeatherData"
+	PERIOD_TOTALS = "period_totals"
 
 
 class WeatherV1Legends(DataGardenModelLegends):
@@ -40,6 +43,7 @@ class WeatherV1Legends(DataGardenModelLegends):
 	SNOW_DEPTH_CM = "snow depth in cm"
 	RADIATION_PER_SQUARE_M = "radiation per square meter in W/m²"
 	HUMIDITY = "humidity in %"
+	PERIOD_TOTALS = "Weather totals for the period"
 
 
 L = WeatherV1Legends
@@ -49,28 +53,36 @@ class WeatherObservationV1(DataGardenModel):
 	datagarden_model_version: str = Field(
 		"v1.0", frozen=True, description=L.DATAGARDEN_MODEL_VERSION
 	)
-	min_temp: Optional[float] = Field(None, ge=-70, le=70)
-	max_temp: Optional[float] = Field(None, ge=-70, le=70)
-	mean_temp: Optional[float] = Field(None, ge=-70, le=70)
-	rain_fall_mm: Optional[float] = Field(None, ge=0)
-	sea_level_pressure_hpa: Optional[float] = Field(None, ge=850, le=1100)
-	cloud_cover_okta: Optional[int] = Field(None, ge=0, le=8)
-	temp_scale: Literal["CELSIUS", "FAHRENHEID"] = "CELSIUS"
-	wind_direction: Optional[int] = Field(None, ge=0, le=359)
-	wind_speed_m_s: Optional[float] = Field(None, ge=0, le=110)
-	max_wind_gust_m_s: Optional[float] = Field(None, ge=0, le=110)
-	sun_hours: Optional[float] = Field(None, ge=0, le=24)
-	snow_depth_cm: Optional[float] = Field(None, ge=0, le=10000)
-	radiation_per_square_m: Optional[float] = Field(None, ge=-100, le=2000)
-	humidity: Optional[float] = Field(None, ge=0, le=100)
-
-	@property
-	def is_empty(self) -> bool:
-		return all(
-			getattr(self, field) is None
-			for field in self.model_fields
-			if field not in ["temp_scale", "datagarden_model_version"]
-		)
-
-	def __bool__(self) -> bool:
-		return not self.is_empty
+	min_temp: Optional[float] = Field(None, ge=-70, le=70, description=L.MIN_TEMP)
+	max_temp: Optional[float] = Field(None, ge=-70, le=70, description=L.MAX_TEMP)
+	mean_temp: Optional[float] = Field(None, ge=-70, le=70, description=L.MEAN_TEMP)
+	rain_fall_mm: Optional[float] = Field(None, ge=0, description=L.RAIN_FALL_MM)
+	sea_level_pressure_hpa: Optional[float] = Field(
+		None, ge=850, le=1100, description=L.SEA_LEVEL_PRESSURE_HPA
+	)
+	cloud_cover_okta: Optional[int] = Field(
+		None, ge=0, le=8, description=L.CLOUD_COVER_OKTA
+	)
+	temp_scale: Literal["CELSIUS", "FAHRENHEID"] = Field(
+		"CELSIUS", description=L.TEMP_SCALE
+	)
+	wind_direction: Optional[int] = Field(
+		None, ge=0, le=359, description=L.WIND_DIRECTION
+	)
+	wind_speed_m_s: Optional[float] = Field(
+		None, ge=0, le=110, description=L.WIND_SPEED_M_S
+	)
+	max_wind_gust_m_s: Optional[float] = Field(
+		None, ge=0, le=110, description=L.MAX_WIND_GUST_M_S
+	)
+	sun_hours: Optional[float] = Field(None, ge=0, le=24, description=L.SUN_HOURS)
+	snow_depth_cm: Optional[float] = Field(
+		None, ge=0, le=10000, description=L.SNOW_DEPTH_CM
+	)
+	radiation_per_square_m: Optional[float] = Field(
+		None, ge=-100, le=2000, description=L.RADIATION_PER_SQUARE_M
+	)
+	humidity: Optional[float] = Field(None, ge=0, le=100, description=L.HUMIDITY)
+	period_totals: Optional[WeatherPeriodTotalsV1] = Field(
+		None, description=L.PERIOD_TOTALS
+	)

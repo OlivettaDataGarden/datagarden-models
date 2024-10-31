@@ -2,6 +2,10 @@
 Changelog
 =========
 
+1.3.1 (2024-10-31)
+------------------
+* added period totals to weather model
+
 1.3.0 (2024-10-30)
 ------------------
 * weather model added
