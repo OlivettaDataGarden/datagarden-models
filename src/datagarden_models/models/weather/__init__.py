@@ -86,3 +86,6 @@ class WeatherObservationV1(DataGardenModel):
 	period_totals: Optional[WeatherPeriodTotalsV1] = Field(
 		None, description=L.PERIOD_TOTALS
 	)
+
+	class Meta:
+		exclude_fields_in_has_values_check: list[str] = [WeatherV1Keys.TEMP_SCALE]
