@@ -1,4 +1,4 @@
-from typing import Literal
+from typing import Literal, Optional
 
 from pydantic import Field
 
@@ -39,31 +39,31 @@ L = WeatherPeriodTotalsV1Legends
 
 
 class Total(DataGardenSubModel):
-	value: float | None = Field(None, ge=0, description=L.VALUE)
-	days_with_metric_data: int | None = Field(
+	value: Optional[float] = Field(None, ge=0, description=L.VALUE)
+	days_with_metric_data: Optional[int] = Field(
 		None, ge=0, description=L.DAYS_WITH_METRIC_DATA
 	)
 
 
 class TotalInt(DataGardenSubModel):
-	value: int | None = Field(None, ge=0, description=L.VALUE)
-	days_with_metric_data: int | None = Field(
+	value: Optional[int] = Field(None, ge=0, description=L.VALUE)
+	days_with_metric_data: Optional[int] = Field(
 		None, ge=0, description=L.DAYS_WITH_METRIC_DATA
 	)
 
 
 class WeatherPeriodTotalsV1(DataGardenSubModel):
-	days_with_precipitation: TotalInt | None = Field(
+	days_with_precipitation: Optional[TotalInt] = Field(
 		None, description=L.DAYS_WITH_PRECIPITATION
 	)
-	days_with_snow: TotalInt | None = Field(None, description=L.DAYS_WITH_SNOW)
-	days_with_sun: TotalInt | None = Field(None, description=L.DAYS_WITH_SUN)
-	total_precipitation_mm: Total | None = Field(
+	days_with_snow: Optional[TotalInt] = Field(None, description=L.DAYS_WITH_SNOW)
+	days_with_sun: Optional[TotalInt] = Field(None, description=L.DAYS_WITH_SUN)
+	total_precipitation_mm: Optional[Total] = Field(
 		None, description=L.TOTAL_PRECIPITATION_MM
 	)
-	total_snow_cm: Total | None = Field(None, description=L.TOTAL_SNOW_CM)
-	total_sun_hours: Total | None = Field(None, description=L.TOTAL_SUN_HOURS)
-	days_with_weather_data: int | None = Field(
+	total_snow_cm: Optional[Total] = Field(None, description=L.TOTAL_SNOW_CM)
+	total_sun_hours: Optional[Total] = Field(None, description=L.TOTAL_SUN_HOURS)
+	days_with_weather_data: Optional[int] = Field(
 		None, ge=0, description=L.DAYS_WITH_WEATHER_DATA
 	)
 
