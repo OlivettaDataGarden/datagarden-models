@@ -2,6 +2,10 @@
 Changelog
 =========
 
+1.3.3 (2024-11-01)
+------------------
+* improved units method to return a dictionary with attribute names and descriptions from nested models
+
 1.3.2 (2024-10-31)
 ------------------
 * added period totals to weather model

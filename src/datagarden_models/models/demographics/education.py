@@ -1,5 +1,7 @@
 from pydantic import BaseModel, Field
 
+from datagarden_models.models.base import DataGardenModelLegends, DataGardenSubModel
+
 
 class PercentagesByAgeGenderBaseKeys:
 	MALE = "male"
@@ -7,7 +9,7 @@ class PercentagesByAgeGenderBaseKeys:
 	TOTAL = "total"
 
 
-class PercentagesByAgeGenderLegends:
+class PercentagesByAgeGenderLegends(DataGardenModelLegends):
 	AGE_GENDER_MALE = "Percentage of males in with given education level. "
 	AGE_GENDER_FEMALE = "Percentage of females with education level. "
 	AGE_GENDER_TOTAL = "Percentage of males and females with education level. "
@@ -16,13 +18,13 @@ class PercentagesByAgeGenderLegends:
 L1a = PercentagesByAgeGenderLegends
 
 
-class PercentagesByAgeGender(BaseModel):
+class PercentagesByAgeGender(DataGardenSubModel):
 	male: dict = Field(default_factory=dict, description=L1a.AGE_GENDER_MALE)
 	female: dict = Field(default_factory=dict, description=L1a.AGE_GENDER_FEMALE)
 	total: dict = Field(default_factory=dict, description=L1a.AGE_GENDER_TOTAL)
 
 
-class CountByAgeGenderLegends:
+class CountByAgeGenderLegends(DataGardenModelLegends):
 	AGE_GENDER_MALE = "Number of males in with given education level. "
 	AGE_GENDER_FEMALE = "Number of females with education level. "
 	AGE_GENDER_TOTAL = "Number of males and females with education level. "
@@ -45,7 +47,7 @@ class Isced2011EducationLevelKeys:
 	ISCED_2011_8_COUNT = "isced_2011_8_count"
 
 
-class Isced2011EducationLevelLegends:
+class Isced2011EducationLevelLegends(DataGardenModelLegends):
 	ISCED_2011_5TO8 = (
 		"Level 5 up to and including level 8 of the "
 		"ISCED 2011 International Standard Classification of Education."
@@ -89,7 +91,7 @@ class Isced2011EducationLevel(BaseModel):
 	)
 
 
-class EducationV1Legends:
+class EducationV1Legends(DataGardenModelLegends):
 	ISCED_2011_BY_AGE_GENDER = (
 		"Percentage or count of and age gender group with a given education level. "
 		"see https://uis.unesco.org/sites/default/files/documents/international-standard-classification-of-education-isced-2011-en.pdf"

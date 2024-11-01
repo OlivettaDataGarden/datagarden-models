@@ -1,7 +1,11 @@
-from pydantic import BaseModel, Field
+from typing import Optional
+
+from pydantic import Field
+
+from datagarden_models.models.base import DataGardenModelLegends, DataGardenSubModel
 
 
-class FertilityV1Legends:
+class FertilityV1Legends(DataGardenModelLegends):
 	TOTAL_BIRTHS = "Total number of births in the population."
 	BIRTHS_BY_AGE = "Number of births categorized by age of the mother."
 	AVERAGE_AGE_MOTHER = "Average age of mothers at childbirth."
@@ -14,20 +18,20 @@ class FertilityV1Legends:
 L = FertilityV1Legends
 
 
-class Fertility(BaseModel):
-	total_births: float | None = Field(default=None, description=L.TOTAL_BIRTHS)
+class Fertility(DataGardenSubModel):
+	total_births: Optional[float] = Field(default=None, description=L.TOTAL_BIRTHS)
 	births_by_age: dict = Field(default_factory=dict, description=L.BIRTHS_BY_AGE)
-	average_age_mother: float | None = Field(
+	average_age_mother: Optional[float] = Field(
 		default=None, description=L.AVERAGE_AGE_MOTHER
 	)
-	median_age_mother: float | None = Field(
+	median_age_mother: Optional[float] = Field(
 		default=None, description=L.MEDIAN_AGE_MOTHER
 	)
-	fertility_rate: float | None = Field(default=None, description=L.FERTILITY_RATE)
+	fertility_rate: Optional[float] = Field(default=None, description=L.FERTILITY_RATE)
 	fertility_rate_by_age: dict = Field(
 		default_factory=dict, description=L.FERTILITY_RATE_BY_AGE
 	)
-	birth_rate: float | None = Field(default=None, description=L.BIRTH_RATE)
+	birth_rate: Optional[float] = Field(default=None, description=L.BIRTH_RATE)
 
 
 class FertilityV1Keys:

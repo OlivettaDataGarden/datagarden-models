@@ -7,14 +7,14 @@ from .health import HealthV1, HealthV1Keys
 
 class DatagardenModels:
 	DEMOGRAPHICS = DemographicsV1
-	ECOMOMICS = EconomicsV1
+	ECONOMICS = EconomicsV1
 	HEALTH = HealthV1
 	WEATHER = WeatherObservationV1
 
 
 class DatagardenModelKeys:
 	DEMOGRAPHICS = DemographicsV1Keys
-	ECOMOMICS = EconomicsV1Keys
+	ECONOMICS = EconomicsV1Keys
 	HEALTH = HealthV1Keys
 	WEATHER = WeatherV1Keys
 
