@@ -111,7 +111,7 @@ class DataGardenSubModel(BaseModel):
 		else:
 			base_result.update(recursive_units(cls))
 		return base_result
-	
+
 	@property
 	def is_empty(self) -> bool:
 		return not self.has_values()

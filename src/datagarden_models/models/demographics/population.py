@@ -2,8 +2,9 @@ from typing import Optional
 
 from pydantic import Field
 
+from ..base import DataGardenModelLegends, DataGardenSubModel
 from .base_demographics import AgeGender
-from ..base import DataGardenSubModel, DataGardenModelLegends
+
 
 class PopulationV1Legends(DataGardenModelLegends):
 	BY_AGE_GENDER = "Age gender distribution for males and females. "

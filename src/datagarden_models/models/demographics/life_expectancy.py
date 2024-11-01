@@ -1,6 +1,6 @@
+from pydantic import Field
 
 from datagarden_models.models.base import DataGardenModelLegends, DataGardenSubModel
-from pydantic import Field
 
 from .base_demographics import AgeGender
 

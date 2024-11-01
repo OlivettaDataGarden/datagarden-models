@@ -1,6 +1,8 @@
 from typing import Optional
+
+from pydantic import Field
+
 from datagarden_models.models.base import DataGardenModelLegends, DataGardenSubModel
-from pydantic import BaseModel, Field
 
 
 class FertilityV1Legends(DataGardenModelLegends):
