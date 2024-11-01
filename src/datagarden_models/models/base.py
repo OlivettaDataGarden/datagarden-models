@@ -33,6 +33,56 @@ class DataGardenSubModel(BaseModel):
 				return True
 		return False
 
+	@classmethod
+	def units(cls, attribute: str | None = None, indent: int = 0):
+		def print_description(prefix, field_info, indent_level):
+			indent_space = "    " * indent_level
+			description = field_info.description
+			if description:
+				print(f"{indent_space}{prefix}: {description}")
+
+		def is_base_model(annotation):
+			if isinstance(annotation, type) and issubclass(annotation, BaseModel):
+				return True
+			if get_origin(annotation) is Union:
+				return any(is_base_model(arg) for arg in get_args(annotation))
+			return False
+
+		def recursive_units(sub_cls: type[BaseModel], attr_prefix="", indent_level=0):
+			for field_name, field_info in sub_cls.model_fields.items():
+				full_attr_name = (
+					f"{attr_prefix}.{field_name}" if attr_prefix else field_name
+				)
+				if is_base_model(field_info.annotation):
+					print_description(full_attr_name, field_info, indent_level)
+					if field_info.annotation:
+						annotation = field_info.annotation
+						if get_origin(annotation) is Union:
+							# Get the first non-None type from Union (Optional)
+							annotation = next(arg for arg in get_args(annotation) if arg is not type(None))
+						# If it's a class, use it directly
+						actual_class = annotation if isinstance(annotation, type) else get_args(annotation)[0]
+						recursive_units(actual_class, full_attr_name, indent_level + 1)
+				else:
+					print_description(full_attr_name, field_info, indent_level)
+
+		if attribute:
+			parts = attribute.split(".")
+			current_model = cls
+			for part in parts:
+				field_info = current_model.model_fields.get(part)
+				if not field_info:
+					print(f"No description available for attribute: {attribute}")
+					return
+				if issubclass(field_info.__class__, BaseModel):
+					current_model = field_info.__class__
+				else:
+					print_description(attribute, field_info, indent)
+					return
+			recursive_units(current_model, attribute, indent + 1)
+		else:
+			recursive_units(cls)
+
 	@property
 	def is_empty(self) -> bool:
 		return not self.has_values()
@@ -60,49 +110,3 @@ class DataGardenModel(DataGardenSubModel):
 		):
 			raise ValueError("The field 'datagarden_model_version' is immutable.")
 		return values
-
-	@classmethod
-	def units(cls, attribute: str | None = None, indent: int = 0):
-		def print_description(prefix, field_info, indent_level):
-			indent_space = "    " * indent_level
-			description = field_info.description
-			if description:
-				print(f"{indent_space}{prefix}: {description}")
-
-		def is_base_model(annotation):
-			if isinstance(annotation, type) and issubclass(annotation, BaseModel):
-				return True
-			if get_origin(annotation) is Union:
-				return any(is_base_model(arg) for arg in get_args(annotation))
-			return False
-
-		def recursive_units(sub_cls: type[BaseModel], attr_prefix="", indent_level=0):
-			for field_name, field_info in sub_cls.model_fields.items():
-				full_attr_name = (
-					f"{attr_prefix}.{field_name}" if attr_prefix else field_name
-				)
-				if is_base_model(field_info.annotation):
-					print_description(full_attr_name, field_info, indent_level)
-					if field_info.annotation:
-						recursive_units(
-							field_info.annotation, full_attr_name, indent_level + 1
-						)
-					else:
-						print_description(full_attr_name, field_info, indent_level)
-
-		if attribute:
-			parts = attribute.split(".")
-			current_model = cls
-			for part in parts:
-				field_info = current_model.model_fields.get(part)
-				if not field_info:
-					print(f"No description available for attribute: {attribute}")
-					return
-				if issubclass(field_info.__class__, BaseModel):
-					current_model = field_info.__class__
-				else:
-					print_description(attribute, field_info, indent)
-					return
-			recursive_units(current_model, attribute, indent + 1)
-		else:
-			recursive_units(cls)
