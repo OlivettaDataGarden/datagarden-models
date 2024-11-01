@@ -1,9 +1,11 @@
-from pydantic import BaseModel, Field
+from typing import Optional
+
+from pydantic import Field
 
 from .base_demographics import AgeGender
+from ..base import DataGardenSubModel, DataGardenModelLegends
 
-
-class PopulationV1Legends:
+class PopulationV1Legends(DataGardenModelLegends):
 	BY_AGE_GENDER = "Age gender distribution for males and females. "
 	TOTAL = "Total population. " "In number of individuals."
 
@@ -27,21 +29,21 @@ class PopulationV1Legends:
 L = PopulationV1Legends
 
 
-class Population(BaseModel):
+class Population(DataGardenSubModel):
 	by_age_gender: AgeGender = Field(
 		default_factory=AgeGender, description=L.BY_AGE_GENDER
 	)
-	total: float | None = Field(default=None, description=L.TOTAL)
+	total: Optional[float] = Field(default=None, description=L.TOTAL)
 
-	total_male: float | None = Field(default=None, description=L.TOTAL_MALE)
-	total_female: float | None = Field(default=None, description=L.TOTAL_FEMALE)
-	male_to_female_ratio: float | None = Field(
+	total_male: Optional[float] = Field(default=None, description=L.TOTAL_MALE)
+	total_female: Optional[float] = Field(default=None, description=L.TOTAL_FEMALE)
+	male_to_female_ratio: Optional[float] = Field(
 		default=None, description=L.MALE_FEMALE_RATIO
 	)
-	density: float | None = Field(default=None, description=L.DENSITY)
-	change: float | None = Field(default=None, description=L.CHANGE)
-	natural_change: float | None = Field(default=None, description=L.NATURAL_CHANGE)
-	natural_change_rate: float | None = Field(
+	density: Optional[float] = Field(default=None, description=L.DENSITY)
+	change: Optional[float] = Field(default=None, description=L.CHANGE)
+	natural_change: Optional[float] = Field(default=None, description=L.NATURAL_CHANGE)
+	natural_change_rate: Optional[float] = Field(
 		default=None, description=L.NATURAL_CHANGE_RATE
 	)
 
