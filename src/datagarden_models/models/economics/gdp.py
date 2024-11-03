@@ -68,7 +68,7 @@ L = GDPV1Legends
 
 
 class GDP(DataGardenSubModel):
-	total_gpd: EconomicsValue = Field(
+	total_gdp: EconomicsValue = Field(
 		default_factory=EconomicsValue, description=L.TOTAL_GDP
 	)
 	gpd_per_inhabitant: EconomicsValue = Field(
