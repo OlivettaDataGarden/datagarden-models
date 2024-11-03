@@ -100,7 +100,7 @@ class Legend:
 		return False
 
 	def _field_to_legends(self) -> dict[str, "Legend"]:
-		legends = {}
+		legends: dict[str, Legend] = {}
 		if not self.model:
 			return legends
 		for field_name, field_info in self.model.model_fields.items():
