@@ -88,7 +88,7 @@ class Legend:
 		if self.field_legends:
 			return (
 				f"Data model {self.attribute} : {self.legend} "
-				"(with attributes [{', '.join(self.field_legends.keys())}])"
+				f"(with attributes [{', '.join(self.field_legends.keys())}])"
 			)
 		return f"Attribute {self.attribute} : {self.legend}"
 
