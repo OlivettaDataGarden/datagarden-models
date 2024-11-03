@@ -26,9 +26,11 @@ L = HealthV1Legends
 
 
 class HealthV1(DataGardenModel):
+	MODEL_LEGEND: str = "Health data for a region. "
 	datagarden_model_version: str = Field(
 		"v1.0", frozen=True, description=L.DATAGARDEN_MODEL_VERSION
 	)
+
 	death_statistics: DeathStatistics = Field(
 		default_factory=DeathStatistics, description=L.DEATH_STATISTICS
 	)

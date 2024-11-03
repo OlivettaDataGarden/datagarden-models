@@ -1,4 +1,6 @@
-from pydantic import BaseModel, Field
+from pydantic import Field
+
+from datagarden_models.models.base import DataGardenSubModel
 
 from .base_health import ByGender
 
@@ -18,7 +20,7 @@ class DeathStatisticsLegends:
 L = DeathStatisticsLegends
 
 
-class DeathStatistics(BaseModel):
+class DeathStatistics(DataGardenSubModel):
 	death_rate_idc10: ByGender = Field(
 		default_factory=ByGender, description=L.DEATH_RATE_BY_IDC10
 	)

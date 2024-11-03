@@ -1,4 +1,6 @@
-from pydantic import BaseModel, Field
+from pydantic import Field
+
+from datagarden_models.models.base import DataGardenSubModel
 
 
 class HealthBaseKeys:
@@ -16,7 +18,7 @@ class HealthBaseLegends:
 L = HealthBaseLegends
 
 
-class ByGender(BaseModel):
+class ByGender(DataGardenSubModel):
 	male: dict = Field(default_factory=dict, description=L.MALE)
 	female: dict = Field(default_factory=dict, description=L.FEMALE)
 	total: dict = Field(default_factory=dict, description=L.TOTAL)

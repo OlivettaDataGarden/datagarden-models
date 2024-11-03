@@ -1,4 +1,6 @@
-from pydantic import BaseModel, Field
+from pydantic import Field
+
+from datagarden_models.models.base import DataGardenSubModel
 
 
 class HealthCareFacilitiesKeys:
@@ -12,5 +14,5 @@ class HealthCareFacilitiesLegends:
 L = HealthCareFacilitiesLegends
 
 
-class HealthCareFacilities(BaseModel):
+class HealthCareFacilities(DataGardenSubModel):
 	hospital_beds: float | None = Field(default=None, description=L.HOSPITAL_BEDS)
