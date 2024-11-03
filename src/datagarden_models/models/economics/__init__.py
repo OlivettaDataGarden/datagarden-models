@@ -18,6 +18,7 @@ L = EconomicsV1Legends
 
 
 class EconomicsV1(DataGardenModel):
+	MODEL_LEGEND: str = "Economic data for a region. "
 	datagarden_model_version: str = Field(
 		"v1.0", frozen=True, description=L.DATAGARDEN_MODEL_VERSION
 	)

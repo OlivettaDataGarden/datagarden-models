@@ -2,10 +2,10 @@ from typing import Optional
 
 from pydantic import Field
 
-from datagarden_models.models.base import DataGardenModelLegends, DataGardenSubModel
+from datagarden_models.models.base import DataGardenSubModel
 
 
-class FertilityV1Legends(DataGardenModelLegends):
+class FertilityV1Legends:
 	TOTAL_BIRTHS = "Total number of births in the population."
 	BIRTHS_BY_AGE = "Number of births categorized by age of the mother."
 	AVERAGE_AGE_MOTHER = "Average age of mothers at childbirth."

@@ -1,4 +1,6 @@
-from pydantic import BaseModel, Field
+from pydantic import Field
+
+from datagarden_models.models.base import DataGardenSubModel
 
 from .base_economics import EconomicsUnit, EconomicsValue
 
@@ -21,7 +23,7 @@ class ValueAddedLegends:
 LV = ValueAddedLegends
 
 
-class ValueAdded(BaseModel):
+class ValueAdded(DataGardenSubModel):
 	units: EconomicsUnit = Field(default_factory=EconomicsUnit, description=LV.UNITS)
 	total: float | None = Field(default=None, description=LV.TOTAL)
 	by_nace_activity: dict = Field(
@@ -42,7 +44,7 @@ class GDPConstantKeys:
 	REFERENCE_YEAR = "reference_year"
 
 
-class GDPAtConstantPrices(BaseModel):
+class GDPAtConstantPrices(DataGardenSubModel):
 	total_gpd: EconomicsValue = Field(
 		default_factory=EconomicsValue, description=GC.TOTAL_GDP_CONSTANT_PRICES
 	)
@@ -65,7 +67,7 @@ class GDPV1Legends:
 L = GDPV1Legends
 
 
-class GDP(BaseModel):
+class GDP(DataGardenSubModel):
 	total_gpd: EconomicsValue = Field(
 		default_factory=EconomicsValue, description=L.TOTAL_GDP
 	)

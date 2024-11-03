@@ -1,4 +1,6 @@
-from pydantic import BaseModel, Field
+from pydantic import Field
+
+from datagarden_models.models.base import DataGardenSubModel
 
 
 class EconomicBaseKeys:
@@ -16,12 +18,12 @@ class EconomicBaseLegends:
 L = EconomicBaseLegends
 
 
-class EconomicsValue(BaseModel):
+class EconomicsValue(DataGardenSubModel):
 	value: float | None = Field(default=None, description=L.VALUE)
 	unit: int = Field(default=1, description=L.UNIT)
 	currency: str = Field(default="EUR", description=L.CURRENCY)
 
 
-class EconomicsUnit(BaseModel):
+class EconomicsUnit(DataGardenSubModel):
 	unit: int = Field(default=1, description=L.UNIT)
 	currency: str = Field(default="EUR", description=L.CURRENCY)

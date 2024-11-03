@@ -26,6 +26,7 @@ class DemographicsV1Keys(
 
 
 class DemographicsV1Legends(DataGardenModelLegends):
+	MODEL_LEGEND = "Demographic models for a region. "
 	POPULATION = "Population indicators for the region. "
 	MORTALITY = "Mortality indicators for the region. "
 	FERTILITY = "Fertility indicators for the region. "

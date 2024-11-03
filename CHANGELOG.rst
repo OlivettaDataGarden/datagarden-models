@@ -2,6 +2,10 @@
 Changelog
 =========
 
+1.3.4 (2024-11-03)
+------------------
+* Replaced units method with Legend class 
+
 1.3.3 (2024-11-01)
 ------------------
 * improved units method to return a dictionary with attribute names and descriptions from nested models

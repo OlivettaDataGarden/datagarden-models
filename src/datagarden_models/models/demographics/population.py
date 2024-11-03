@@ -2,11 +2,11 @@ from typing import Optional
 
 from pydantic import Field
 
-from ..base import DataGardenModelLegends, DataGardenSubModel
+from ..base import DataGardenSubModel
 from .base_demographics import AgeGender
 
 
-class PopulationV1Legends(DataGardenModelLegends):
+class PopulationV1Legends:
 	BY_AGE_GENDER = "Age gender distribution for males and females. "
 	TOTAL = "Total population. " "In number of individuals."
 
