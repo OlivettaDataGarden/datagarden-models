@@ -1,6 +1,6 @@
 from pydantic import Field
 
-from datagarden_models.models.base import DataGardenModelLegends, DataGardenSubModel
+from datagarden_models.models.base import DataGardenSubModel
 
 
 class DemographicsBaseKeys:
@@ -8,7 +8,7 @@ class DemographicsBaseKeys:
 	FEMALE = "female"
 
 
-class DemographicsBaseLegends(DataGardenModelLegends):
+class DemographicsBaseLegends:
 	AGE_GENDER_MALE = (
 		"Number of males. " "In number of individuals per age or age group."
 	)

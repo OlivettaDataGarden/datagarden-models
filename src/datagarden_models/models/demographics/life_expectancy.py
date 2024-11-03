@@ -1,6 +1,6 @@
 from pydantic import Field
 
-from datagarden_models.models.base import DataGardenModelLegends, DataGardenSubModel
+from datagarden_models.models.base import DataGardenSubModel
 
 from .base_demographics import AgeGender
 
@@ -10,7 +10,7 @@ class LifeExpectancyV1Keys:
 	REMAINING_LIFE_EXPECTANCY = "remaining_life_expectancy"
 
 
-class LifeExpectancyV1Legends(DataGardenModelLegends):
+class LifeExpectancyV1Legends:
 	LIFE_EXPECTANCY_AT_BIRTH = (
 		"Life expectancy per age or age group at birth. "
 		"In years expected to live when born"

@@ -1,13 +1,13 @@
 from typing import Optional
 
-from pydantic import BaseModel, Field
+from pydantic import Field
 
-from datagarden_models.models.base import DataGardenModelLegends
+from datagarden_models.models.base import DataGardenSubModel
 
 from .base_demographics import AgeGender
 
 
-class MortalityV1Legends(DataGardenModelLegends):
+class MortalityV1Legends:
 	DEATHS_BY_AGE = (
 		"Death count per year. " "In number of individuals per age or age group."
 	)
@@ -19,7 +19,7 @@ class MortalityV1Legends(DataGardenModelLegends):
 L = MortalityV1Legends
 
 
-class Mortality(BaseModel):
+class Mortality(DataGardenSubModel):
 	deaths_by_age: AgeGender = Field(
 		default_factory=AgeGender, description=L.DEATHS_BY_AGE
 	)
