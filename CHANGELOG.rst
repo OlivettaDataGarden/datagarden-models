@@ -2,7 +2,7 @@
 Changelog
 =========
 
-1.3.5 (2024-11-03)
+1.3.6 (2024-11-03)
 ------------------
 * Replaced units method with Legend class 
 
