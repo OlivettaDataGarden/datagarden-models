@@ -33,84 +33,6 @@ class DataGardenSubModel(BaseModel):
 				return True
 		return False
 
-	@classmethod
-	def units(
-		cls,
-		attribute: str | None = None,
-		indent: int = 0,
-		print_units: bool = False,
-	):
-		def print_description(prefix, field_info, indent_level):
-			if print_units:
-				indent_space = "    " * indent_level
-				description = field_info.description
-				if description:
-					print(f"{indent_space}{prefix}: {description}")
-
-		def is_base_model(annotation):
-			if isinstance(annotation, type) and issubclass(annotation, BaseModel):
-				return True
-			if get_origin(annotation) is Union:
-				return any(is_base_model(arg) for arg in get_args(annotation))
-			return False
-
-		def recursive_units(
-			sub_cls: type[BaseModel], attr_prefix="", indent_level=0
-		) -> dict:
-			result = {}
-			for field_name, field_info in sub_cls.model_fields.items():
-				full_attr_name = (
-					f"{attr_prefix}.{field_name}" if attr_prefix else field_name
-				)
-				result[full_attr_name] = field_info.description
-				if is_base_model(field_info.annotation):
-					print_description(full_attr_name, field_info, indent_level)
-					if field_info.annotation:
-						annotation = field_info.annotation
-						if get_origin(annotation) is Union:
-							# Get the first non-None type from Union (Optional)
-							annotation = next(
-								arg
-								for arg in get_args(annotation)
-								if arg is not type(None)
-							)
-						# If it's a class, use it directly
-						actual_class = (
-							annotation
-							if isinstance(annotation, type)
-							else get_args(annotation)[0]
-						)
-						result.update(
-							recursive_units(
-								actual_class,
-								full_attr_name,
-								indent_level + 1,
-							)
-						)
-				else:
-					print_description(full_attr_name, field_info, indent_level)
-			return result
-
-		base_result = {}
-
-		if attribute:
-			parts = attribute.split(".")
-			current_model = cls
-			for part in parts:
-				field_info = current_model.model_fields.get(part)
-				if not field_info:
-					print(f"No description available for attribute: {attribute}")
-					return
-				base_result[part] = field_info.description
-				if issubclass(field_info.__class__, BaseModel):
-					current_model = field_info.__class__
-				else:
-					print_description(attribute, field_info, indent)
-					return
-			base_result.update(recursive_units(current_model, attribute, indent + 1))
-		else:
-			base_result.update(recursive_units(cls))
-		return base_result
 
 	@property
 	def is_empty(self) -> bool:
@@ -167,7 +89,7 @@ class Legend:
 	    Now you can access information about the models attributes
 
 	    >>> legends.population
-	    Data model population : Population indicators for the region.  (with attributes 
+	    Data model population : Population indicators for the region.  (with attributes
 		[by_age_gender, total, total_male, total_female, male_to_female_ratio, density,
 	    change, natural_change, natural_change_rate])
 
