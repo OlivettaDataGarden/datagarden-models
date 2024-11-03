@@ -73,7 +73,7 @@ class Legend:
 		attribute_type: Any | None = None,
 	):
 		self.model = model
-		self.attribute = attribute or model.__name__ if model else None
+		self.attribute = attribute or (model.__name__ if model else None)
 		self.field_legends = self._field_to_legends() if model else {}
 		self.type = attribute_type or model
 
@@ -87,10 +87,10 @@ class Legend:
 	def __repr__(self) -> str:
 		if self.field_legends:
 			return (
-				f"Data model {self.attribute} : {self.legend} "
+				f"Data model <{self.attribute}> : {self.legend} "
 				f"(with attributes [{', '.join(self.field_legends.keys())}])"
 			)
-		return f"Attribute {self.attribute} : {self.legend}"
+		return f"Attribute <{self.attribute}> : {self.legend}"
 
 	def is_base_model(self, annotation):
 		if isinstance(annotation, type) and issubclass(annotation, BaseModel):
