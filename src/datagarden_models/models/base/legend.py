@@ -107,7 +107,7 @@ class Legend:
 		for field_name, field_info in self.model.model_fields.items():
 			if field_name in ("datagarden_model_version", "MODEL_LEGEND"):
 				continue
-			actual_class = None
+			sub_class_type = None
 			if self.is_base_model(field_info.annotation):
 				annotation = field_info.annotation
 				if get_origin(annotation) is Union:
@@ -116,13 +116,14 @@ class Legend:
 						arg for arg in get_args(annotation) if arg is not type(None)
 					)
 				# If it's a class, use it directly
-				attribute_type = (
+				attribute_class_type = (
 					annotation
 					if isinstance(annotation, type)
 					else get_args(annotation)[0]
 				)
+				sub_class_type = attribute_class_type
 			elif get_origin(field_info.annotation) is Literal:
-				attribute_type = field_info.annotation
+				attribute_class_type = field_info.annotation
 
 			elif get_origin(field_info.annotation) is Union:
 				annotation = next(
@@ -130,19 +131,19 @@ class Legend:
 					for arg in get_args(field_info.annotation)
 					if arg is not type(None)
 				)
-				attribute_type = (
+				attribute_class_type = (
 					annotation
 					if isinstance(annotation, type)
 					else get_args(annotation)[0]
 				)
 			else:
-				attribute_type = field_info.annotation
+				attribute_class_type = field_info.annotation
 
 			legends[field_name] = Legend(
-				model=actual_class,
+				model=sub_class_type,
 				description=field_info.description,
 				attribute=field_name,
-				attribute_type=attribute_type,
+				attribute_type=attribute_class_type,
 			)
 		return legends
 
