@@ -1,3 +1,4 @@
+from types import UnionType
 from typing import Any, Literal, Union, get_args, get_origin
 
 from pydantic import BaseModel
@@ -125,7 +126,9 @@ class Legend:
 			elif get_origin(field_info.annotation) is Literal:
 				attribute_class_type = field_info.annotation
 
-			elif get_origin(field_info.annotation) is Union:
+			elif get_origin(field_info.annotation) is Union or isinstance(
+				field_info.annotation, UnionType
+			):
 				annotation = next(
 					arg
 					for arg in get_args(field_info.annotation)
@@ -139,6 +142,7 @@ class Legend:
 			else:
 				attribute_class_type = field_info.annotation
 
+			print(field_name, attribute_class_type)
 			legends[field_name] = Legend(
 				model=sub_class_type,
 				description=field_info.description,

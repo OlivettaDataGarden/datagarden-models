@@ -1,3 +1,5 @@
+from typing import Optional
+
 from pydantic import Field
 
 from datagarden_models.models.base import DataGardenSubModel
@@ -15,4 +17,4 @@ L = HealthCareFacilitiesLegends
 
 
 class HealthCareFacilities(DataGardenSubModel):
-	hospital_beds: float | None = Field(default=None, description=L.HOSPITAL_BEDS)
+	hospital_beds: Optional[float] = Field(default=None, description=L.HOSPITAL_BEDS)
