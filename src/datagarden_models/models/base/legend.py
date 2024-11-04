@@ -1,4 +1,4 @@
-from typing import Any, Union, get_args, get_origin
+from typing import Any, Literal, Union, get_args, get_origin
 
 from pydantic import BaseModel
 
@@ -109,21 +109,6 @@ class Legend:
 				continue
 			actual_class = None
 			if self.is_base_model(field_info.annotation):
-				if field_info.annotation:
-					annotation = field_info.annotation
-					if get_origin(annotation) is Union:
-						# Get the first non-None type from Union (Optional)
-						annotation = next(
-							arg for arg in get_args(annotation) if arg is not type(None)
-						)
-					# If it's a class, use it directly
-					actual_class = (
-						annotation
-						if isinstance(annotation, type)
-						else get_args(annotation)[0]
-					)
-				attribute_type = actual_class
-			else:
 				annotation = field_info.annotation
 				if get_origin(annotation) is Union:
 					# Get the first non-None type from Union (Optional)
@@ -131,12 +116,27 @@ class Legend:
 						arg for arg in get_args(annotation) if arg is not type(None)
 					)
 				# If it's a class, use it directly
-				attr_class = (
+				attribute_type = (
 					annotation
 					if isinstance(annotation, type)
 					else get_args(annotation)[0]
 				)
-				attribute_type = attr_class
+			elif get_origin(field_info.annotation) is Literal:
+				attribute_type = field_info.annotation
+
+			elif get_origin(field_info.annotation) is Union:
+				annotation = next(
+					arg
+					for arg in get_args(field_info.annotation)
+					if arg is not type(None)
+				)
+				attribute_type = (
+					annotation
+					if isinstance(annotation, type)
+					else get_args(annotation)[0]
+				)
+			else:
+				attribute_type = field_info.annotation
 
 			legends[field_name] = Legend(
 				model=actual_class,
