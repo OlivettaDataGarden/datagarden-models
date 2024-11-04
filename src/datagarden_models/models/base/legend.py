@@ -75,9 +75,7 @@ class Legend:
 		self.model = model
 		self.attribute = attribute or (model.__name__ if model else None)
 		self.field_legends = self._field_to_legends() if model else {}
-		_type = attribute_type or model
-		self.type = _type
-		self.type_as_str: str = _type.__name__ if _type else ""
+		self.type = attribute_type or model
 
 		if description:
 			self.legend = description
@@ -169,5 +167,7 @@ class Legend:
 		return ", ".join(list(self.field_legends.keys()))
 
 	@property
-	def type_as_string(self) -> str:
-		return self.type_as_str
+	def type_class_name(self) -> str:
+		if self.type:
+			return str(self.type.__name__)
+		return ""
