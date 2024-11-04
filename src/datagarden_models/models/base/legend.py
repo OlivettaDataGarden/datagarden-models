@@ -142,7 +142,6 @@ class Legend:
 			else:
 				attribute_class_type = field_info.annotation
 
-			print(field_name, attribute_class_type)
 			legends[field_name] = Legend(
 				model=sub_class_type,
 				description=field_info.description,

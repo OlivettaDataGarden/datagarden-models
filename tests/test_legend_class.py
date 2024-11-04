@@ -31,3 +31,13 @@ def test_legends_optional_in_annotation():
 		
 	assert legend.field_name is not None
 	assert legend.field_name.type_class_name == "int"
+
+
+def test_legends_for_type_dict():
+	class TestModel(DataGardenSubModel):
+		field_name: dict[str, int] = Field(default=dict, description="test")
+
+	legend = TestModel.legends()
+		
+	assert legend.field_name is not None
+	assert legend.field_name.type_class_name == "dict"
