@@ -17,6 +17,7 @@ Objects for discovery of available dataclasses
 """
 
 from .models import DatagardenModelKeys, DatagardenModels
+from .models.base import DataGardenModel
 
 
 def get_values_from_class(cls: type):
@@ -29,7 +30,7 @@ AVAILABLE_MODEL_NAMES: list[str] = [
 	klass.DATAGARDEN_MODEL_NAME for klass in get_values_from_class(DatagardenModelKeys)
 ]
 
-AVAILABLE_MODELS: list[type] = [
+AVAILABLE_MODELS: list[type[DataGardenModel]] = [
 	klass for klass in get_values_from_class(DatagardenModels)
 ]
 

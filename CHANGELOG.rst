@@ -2,6 +2,10 @@
 Changelog
 =========
 
+1.3.7 (2024-11-04)
+------------------
+* Added helper methods on Legend class
+
 1.3.6 (2024-11-03)
 ------------------
 * Replaced units method with Legend class 

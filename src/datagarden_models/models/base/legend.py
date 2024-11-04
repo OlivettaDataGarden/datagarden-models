@@ -161,3 +161,11 @@ class Legend:
 	@property
 	def has_attributes(self) -> bool:
 		return bool(self.attributes)
+
+	@property
+	def attributes_as_str(self) -> str:
+		return ", ".join(list(self.field_legends.keys()))
+
+	@property
+	def type_as_str(self) -> str:
+		return self.type.__name__ if self.type else ""
