@@ -22,4 +22,6 @@ L = DemographicsBaseLegends
 
 class AgeGender(DataGardenSubModel):
 	male: dict[str, int] = Field(default_factory=dict, description=L.AGE_GENDER_MALE)
-	female: dict[str, int] = Field(default_factory=dict, description=L.AGE_GENDER_FEMALE)
+	female: dict[str, int] = Field(
+		default_factory=dict, description=L.AGE_GENDER_FEMALE
+	)
