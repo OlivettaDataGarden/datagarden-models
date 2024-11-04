@@ -1,3 +1,5 @@
+from typing import Optional
+
 from pydantic import Field
 
 from datagarden_models.models.base import DataGardenSubModel
@@ -25,7 +27,7 @@ LV = ValueAddedLegends
 
 class ValueAdded(DataGardenSubModel):
 	units: EconomicsUnit = Field(default_factory=EconomicsUnit, description=LV.UNITS)
-	total: float | None = Field(default=None, description=LV.TOTAL)
+	total: Optional[float] = Field(default=None, description=LV.TOTAL)
 	by_nace_activity: dict = Field(
 		default_factory=dict, description=LV.BY_NACE_ACTIVITY
 	)
@@ -52,7 +54,7 @@ class GDPAtConstantPrices(DataGardenSubModel):
 		default_factory=EconomicsValue,
 		description=GC.GDP_PER_INHABITANT_CONSTANT_PRICES,
 	)
-	reference_year: str | None = Field(default=None, description=GC.REFERENCE_YEAR)
+	reference_year: Optional[str] = Field(default=None, description=GC.REFERENCE_YEAR)
 
 
 class GDPV1Legends:
@@ -78,8 +80,8 @@ class GDP(DataGardenSubModel):
 	gdp_at_constant_prices: GDPAtConstantPrices = Field(
 		default_factory=GDPAtConstantPrices, description=L.GDP_AT_CONSTANT_PRICES
 	)
-	yoy_growth: float | None = Field(default=None, description=L.YOY_GROWTH)
-	yoy_growth_per_capita: float | None = Field(
+	yoy_growth: Optional[float] = Field(default=None, description=L.YOY_GROWTH)
+	yoy_growth_per_capita: Optional[float] = Field(
 		default=None, description=L.YOY_GROWTH_PER_CAPITA
 	)
 

@@ -2,7 +2,7 @@
 Changelog
 =========
 
-1.4.2 (2024-11-04)
+1.4.3 (2024-11-04)
 ------------------
 * Added helper methods on Legend class
 
