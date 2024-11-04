@@ -167,3 +167,7 @@ class Legend:
 	@property
 	def attributes_as_str(self) -> str:
 		return ", ".join(list(self.field_legends.keys()))
+
+	@property
+	def type_as_string(self) -> str:
+		return self.type_as_str
