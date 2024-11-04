@@ -19,6 +19,7 @@ Objects for discovery of available dataclasses
 from .models import DatagardenModelKeys, DatagardenModels
 from .models.base import DataGardenModel
 
+
 def get_values_from_class(cls: type):
 	for key, value in vars(cls).items():
 		if not key.startswith("__"):
