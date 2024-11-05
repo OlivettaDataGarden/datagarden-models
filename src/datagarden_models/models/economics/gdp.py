@@ -47,10 +47,10 @@ class GDPConstantKeys:
 
 
 class GDPAtConstantPrices(DataGardenSubModel):
-	total_gpd: EconomicsValue = Field(
+	total_gdp: EconomicsValue = Field(
 		default_factory=EconomicsValue, description=GC.TOTAL_GDP_CONSTANT_PRICES
 	)
-	gpd_per_inhabitant: EconomicsValue = Field(
+	gdp_per_inhabitant: EconomicsValue = Field(
 		default_factory=EconomicsValue,
 		description=GC.GDP_PER_INHABITANT_CONSTANT_PRICES,
 	)
@@ -73,7 +73,7 @@ class GDP(DataGardenSubModel):
 	total_gdp: EconomicsValue = Field(
 		default_factory=EconomicsValue, description=L.TOTAL_GDP
 	)
-	gpd_per_inhabitant: EconomicsValue = Field(
+	gdp_per_inhabitant: EconomicsValue = Field(
 		default_factory=EconomicsValue, description=L.GDP_PER_INHABITANT
 	)
 	value_added: ValueAdded = Field(default_factory=ValueAdded, description=L.TOTAL_GDP)
@@ -87,8 +87,8 @@ class GDP(DataGardenSubModel):
 
 
 class GDPV1Keys(ValueAddedKeys, GDPConstantKeys):
-	TOTAL_GDP = "total_gpd"
-	GDP_PER_INHABITANT = "gpd_per_inhabitant"
+	TOTAL_GDP = "total_gdp"
+	GDP_PER_INHABITANT = "gdp_per_inhabitant"
 	VALUE_ADDED = "value_added"
 	GDP_AT_CONSTANT_PRICES = "gdp_at_constant_prices"
 	YOY_GROWTH = "yoy_growth"
