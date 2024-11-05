@@ -2,6 +2,10 @@
 Changelog
 =========
 
+1.4.4 (2024-11-04)
+------------------
+* Fix gdp typo's
+
 1.4.3 (2024-11-04)
 ------------------
 * Added helper methods on Legend class
