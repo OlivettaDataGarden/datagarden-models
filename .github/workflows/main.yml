@@ -92,12 +92,12 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: package-artifact  # Same name for both uploads
+          name: source-artifact  # Same name for both uploads
           path: ./dist/*.tar.gz
 
       - uses: actions/upload-artifact@v4
         with:
-          name: package-artifact  # Same name for both uploads
+          name: wheel-artifact  # Same name for both uploads
           path: ./dist/*.whl
 
   publish:
