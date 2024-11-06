@@ -1,3 +1,4 @@
+from types import GenericAlias
 from types import UnionType
 from typing import Any, Literal, Union, get_args, get_origin
 
@@ -95,6 +96,10 @@ class Legend:
 		return f"Attribute <{self.attribute}> : {self.legend}"
 
 	def is_base_model(self, annotation):
+		# specific case for py 310 as issubclass(annotation, BaseModel) can not handle
+		# things lie dict[str, str]
+		if type(annotation) is GenericAlias:
+			return False
 		if isinstance(annotation, type) and issubclass(annotation, BaseModel):
 			return True
 		if get_origin(annotation) is Union:
@@ -129,15 +134,10 @@ class Legend:
 			elif get_origin(field_info.annotation) is Union or isinstance(
 				field_info.annotation, UnionType
 			):
-				annotation = next(
+				attribute_class_type = next(
 					arg
 					for arg in get_args(field_info.annotation)
 					if arg is not type(None)
-				)
-				attribute_class_type = (
-					annotation
-					if isinstance(annotation, type)
-					else get_args(annotation)[0]
 				)
 			else:
 				attribute_class_type = field_info.annotation

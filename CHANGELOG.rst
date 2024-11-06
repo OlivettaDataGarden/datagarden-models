@@ -2,6 +2,11 @@
 Changelog
 =========
 
+1.4.6 (2024-11-05)
+------------------
+* Added trade attributes to economics model
+* Added added value by economic activity to economics model
+
 1.4.5 (2024-11-05)
 ------------------
 * Added inflation attributes to economics model
