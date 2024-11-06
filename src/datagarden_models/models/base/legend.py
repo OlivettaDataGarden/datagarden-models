@@ -129,15 +129,10 @@ class Legend:
 			elif get_origin(field_info.annotation) is Union or isinstance(
 				field_info.annotation, UnionType
 			):
-				annotation = next(
+				attribute_class_type = next(
 					arg
 					for arg in get_args(field_info.annotation)
 					if arg is not type(None)
-				)
-				attribute_class_type = (
-					annotation
-					if isinstance(annotation, type)
-					else get_args(annotation)[0]
 				)
 			else:
 				attribute_class_type = field_info.annotation
