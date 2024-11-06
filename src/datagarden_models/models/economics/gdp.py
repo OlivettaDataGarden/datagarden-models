@@ -25,8 +25,8 @@ class AddedValueByEconomicActivity(DataGardenSubModel):
 	classification_type: Optional[Literal["ISICV3", "ISICV4", "NAICS2017", "NACE2"]] = (
 		Field(default=None, description=AVC.CLASSIFICATION_TYPE)
 	)
-	as_percentage_of_gdp: Optional[dict[str, float]] = Field(
-		default=dict, description=AVC.AS_PERCENTAGE
+	as_percentage_of_gdp: dict[str, float] = Field(
+		default_factory=dict, description=AVC.AS_PERCENTAGE
 	)
 
 
@@ -119,7 +119,7 @@ class GDP(DataGardenSubModel):
 	)
 
 
-class GDPV1Keys(ValueAddedKeys, GDPConstantKeys):
+class GDPV1Keys(ValueAddedKeys, GDPConstantKeys, AddedValueByEconomicActivityKeys):
 	TOTAL_GDP = "total_gdp"
 	GDP_PER_INHABITANT = "gdp_per_inhabitant"
 	VALUE_ADDED = "value_added"
