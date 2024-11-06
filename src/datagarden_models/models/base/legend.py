@@ -1,5 +1,4 @@
-from types import GenericAlias
-from types import UnionType
+from types import GenericAlias, UnionType
 from typing import Any, Literal, Union, get_args, get_origin
 
 from pydantic import BaseModel
