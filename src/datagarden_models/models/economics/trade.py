@@ -73,7 +73,7 @@ class TradeBalance(DataGardenSubModel):
 class ImportExportKeys:
 	SERVICES = "services"
 	GOODS = "goods"
-	SERVICES_AND_GOODS = "services_and_goods"
+	SERVICES_AND_GOODS = "goods_and_services"
 
 
 class ImportExportLegends:
