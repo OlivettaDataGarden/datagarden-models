@@ -13,6 +13,7 @@ class TradeBalanceTypeKeys:
 	PERCENTAGE_OF_GDP = "percentage_of_gdp"
 	NORMALIZED_TRADE_BALANCE = "normalized_trade_balance"
 
+
 class TradeBalanceTypeLegends:
 	VALUE = "Trade balance value."
 	CURRENCY = "Currency of the trade balance value."
@@ -22,7 +23,9 @@ class TradeBalanceTypeLegends:
 		"Normalized trade balance (-1 to 1, 0 means a fully balanced trade)."
 	)
 
+
 PI = TradeBalanceTypeLegends
+
 
 class TradeBalanceType(DataGardenSubModel):
 	value: Optional[float] = Field(default=None, description=PI.VALUE)
@@ -39,10 +42,11 @@ class TradeBalanceType(DataGardenSubModel):
 
 
 ########## Start Model defenition #########
-class TradeBalanceKeys():
+class TradeBalanceKeys:
 	SERVICES = "services"
 	GOODS = "goods"
 	SERVICES_AND_GOODS = "services_and_goods"
+
 
 class TradeBalanceLegends:
 	SERVICES = "Trade balance information for services."
@@ -50,7 +54,7 @@ class TradeBalanceLegends:
 	SERVICES_AND_GOODS = "Trade balance information for services and goods."
 
 
-L_TB= TradeBalanceLegends
+L_TB = TradeBalanceLegends
 
 
 class TradeBalance(DataGardenSubModel):
@@ -71,12 +75,15 @@ class ImportExportKeys:
 	GOODS = "goods"
 	SERVICES_AND_GOODS = "services_and_goods"
 
+
 class ImportExportLegends:
 	SERVICES = "Value for services trade."
 	GOODS = "Value for goods trade."
 	SERVICES_AND_GOODS = "Value for services and goods trade."
 
+
 L_IMP_EXP = ImportExportLegends
+
 
 class Import(DataGardenSubModel):
 	goods: Optional[float] = Field(default=None, description=L_IMP_EXP.GOODS)

@@ -6,16 +6,19 @@ from .gdp import GDP, GDPV1Keys
 from .infllation import Inflation, InflationV1Keys
 from .trade import TradeV1, TradeV1Keys
 
+
 class EconomicsV1Keys(GDPV1Keys, EconomicBaseKeys, InflationV1Keys, TradeV1Keys):
 	GDP = "gdp"
 	DATAGARDEN_MODEL_NAME = "Economics"
 	INFLATION = "inflation"
 	TRADE = "trade"
 
+
 class EconomicsV1Legends(DataGardenModelLegends):
 	GDP = "Gross Domestic Product"
 	INFLATION = "Inflation numbers"
 	TRADE = "Trade statistics"
+
 
 L = EconomicsV1Legends
 
