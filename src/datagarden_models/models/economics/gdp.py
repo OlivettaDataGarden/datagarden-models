@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Literal, Optional
 
 from pydantic import Field
 
@@ -7,10 +7,35 @@ from datagarden_models.models.base import DataGardenSubModel
 from .base_economics import EconomicsUnit, EconomicsValue
 
 
+########## Start Model defenition #########
+class AddedValueByEconomicActivityKeys:
+	CLASSIFICATION_TYPE = "classification_type"
+	AS_PERCENTAGE = "as_percentage_of_gdp"
+
+
+class AddedValueByEconomicActivityLegends:
+	CLASSIFICATION_TYPE = "Formal classification type of the added value."
+	AS_PERCENTAGE = "Added value for catagery As percentage of GDP."
+
+
+AVC = AddedValueByEconomicActivityLegends
+
+
+class AddedValueByEconomicActivity(DataGardenSubModel):
+	classification_type: Optional[Literal["ISICV3", "ISICV4", "NAICS2017", "NACE2"]] = (
+		Field(default=None, description=AVC.CLASSIFICATION_TYPE)
+	)
+	as_percentage_of_gdp: Optional[dict[str, float]] = Field(
+		default=dict, description=AVC.AS_PERCENTAGE
+	)
+
+
+########## Start Model defenition #########
 class ValueAddedKeys:
 	UNITS = "units"
 	TOTAL = "total"
-	BY_NACE_ACTIVIT = "by_nace_activity"
+	BY_NACE_ACTIVITY = "by_nace_activity"
+	BY_ECONOMIC_ACTIVITY = "by_economic_activity"
 
 
 class ValueAddedLegends:
@@ -19,6 +44,9 @@ class ValueAddedLegends:
 	BY_NACE_ACTIVITY = (
 		"By NACE economic activity. See also "
 		"https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Glossary:Statistical_classification_of_economic_activities_in_the_European_Community_(NACE)"
+	)
+	BY_ECONOMIC_ACTIVITY = (
+		"By activity value category based upon either NACE or ISIC or NAICS."
 	)
 
 
@@ -31,8 +59,13 @@ class ValueAdded(DataGardenSubModel):
 	by_nace_activity: dict = Field(
 		default_factory=dict, description=LV.BY_NACE_ACTIVITY
 	)
+	by_economic_activity: AddedValueByEconomicActivity = Field(
+		default_factory=AddedValueByEconomicActivity,
+		description=LV.BY_ECONOMIC_ACTIVITY,
+	)
 
 
+########## Start Model defenition #########
 class GDPConstantLegends:
 	TOTAL_GDP_CONSTANT_PRICES = "Total GDP at constant prices."
 	GDP_PER_INHABITANT_CONSTANT_PRICES = "GDP per inhabitant at constant prices."
