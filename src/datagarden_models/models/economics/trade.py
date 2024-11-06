@@ -30,10 +30,10 @@ PI = TradeBalanceTypeLegends
 class TradeBalanceType(DataGardenSubModel):
 	value: Optional[float] = Field(default=None, description=PI.VALUE)
 	currency: Optional[str] = Field(default=None, description=PI.CURRENCY)
-	percentage_of_imports: Optional[Annotated[float, Field(ge=-100, le=100)]] = Field(
+	percentage_of_imports: Optional[float] = Field(
 		default=None, description=PI.PERCENTAGE_OF_IMPORTS
 	)
-	percentage_of_gdp: Optional[Annotated[float, Field(ge=-100, le=100)]] = Field(
+	percentage_of_gdp: Optional[float] = Field(
 		default=None, description=PI.PERCENTAGE_OF_GDP
 	)
 	normalized_trade_balance: Optional[Annotated[float, Field(ge=-1, le=1)]] = Field(
