@@ -3,7 +3,7 @@ from pydantic import Field
 from ..base import DataGardenModel, DataGardenModelLegends
 from .base_economics import EconomicBaseKeys
 from .gdp import GDP, GDPV1Keys
-from .infllation import Inflation, InflationV1Keys
+from .inflation import Inflation, InflationV1Keys
 from .trade import TradeV1, TradeV1Keys
 
 
