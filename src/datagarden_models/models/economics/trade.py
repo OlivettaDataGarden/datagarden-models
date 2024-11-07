@@ -63,14 +63,14 @@ class TradeBalanceType(DataGardenSubModel):
 class TradeBalanceKeys:
 	SERVICES = "services"
 	GOODS = "goods"
-	SERVICES_AND_GOODS = "services_and_goods"
+	GOODS_AND_SERVICES = "goods_and_services"
 	CURRENT_ACCOUNT_BALANCE = "current_account_balance"
 
 
 class TradeBalanceLegends:
 	SERVICES = "Trade balance information for services."
 	GOODS = "Trade balance information for goods."
-	SERVICES_AND_GOODS = "Trade balance information for services and goods."
+	GOODS_AND_SERVICES = "Trade balance information for services and goods."
 	CURRENT_ACCOUNT_BALANCE = "Current account balance information."
 
 
@@ -84,8 +84,8 @@ class TradeBalance(DataGardenSubModel):
 	goods: TradeBalanceType = Field(
 		default_factory=TradeBalanceType, description=L_TB.GOODS
 	)
-	services_and_goods: TradeBalanceType = Field(
-		default_factory=TradeBalanceType, description=L_TB.SERVICES_AND_GOODS
+	goods_and_services: TradeBalanceType = Field(
+		default_factory=TradeBalanceType, description=L_TB.GOODS_AND_SERVICES
 	)
 	current_account_balance: CurrentAccountBalance = Field(
 		default_factory=CurrentAccountBalance, description=L_TB.CURRENT_ACCOUNT_BALANCE
@@ -96,13 +96,13 @@ class TradeBalance(DataGardenSubModel):
 class ImportExportKeys:
 	SERVICES = "services"
 	GOODS = "goods"
-	SERVICES_AND_GOODS = "goods_and_services"
+	GOODS_AND_SERVICES = "goods_and_services"
 
 
 class ImportExportLegends:
 	SERVICES = "Value for services trade."
 	GOODS = "Value for goods trade."
-	SERVICES_AND_GOODS = "Value for services and goods trade."
+	GOODS_AND_SERVICES = "Value for services and goods trade."
 
 
 L_IMP_EXP = ImportExportLegends
@@ -112,7 +112,7 @@ class Import(DataGardenSubModel):
 	goods: Optional[float] = Field(default=None, description=L_IMP_EXP.GOODS)
 	services: Optional[float] = Field(default=None, description=L_IMP_EXP.SERVICES)
 	goods_and_services: Optional[float] = Field(
-		default=None, description=L_IMP_EXP.SERVICES_AND_GOODS
+		default=None, description=L_IMP_EXP.GOODS_AND_SERVICES
 	)
 
 
