@@ -6,6 +6,24 @@ from datagarden_models.models.base import DataGardenSubModel
 
 
 ########## Start Model defenition #########
+class CurrentAccountBalanceLegends:
+	VALUE = "Current account balance value."
+	CURRENCY = "Currency of the trade balance value."
+	PERCENTAGE_OF_GDP = "Current accounts as a percentage of GDP."
+
+
+CA = CurrentAccountBalanceLegends
+
+
+class CurrentAccountBalance(DataGardenSubModel):
+	value: Optional[float] = Field(default=None, description=CA.VALUE)
+	currency: Optional[str] = Field(default=None, description=CA.CURRENCY)
+	percentage_of_gdp: Optional[float] = Field(
+		default=None, description=CA.PERCENTAGE_OF_GDP
+	)
+
+
+########## Start Model defenition #########
 class TradeBalanceTypeKeys:
 	VALUE = "value"
 	CURRENCY = "currency"
@@ -46,12 +64,14 @@ class TradeBalanceKeys:
 	SERVICES = "services"
 	GOODS = "goods"
 	SERVICES_AND_GOODS = "services_and_goods"
+	CURRENT_ACCOUNT_BALANCE = "current_account_balance"
 
 
 class TradeBalanceLegends:
 	SERVICES = "Trade balance information for services."
 	GOODS = "Trade balance information for goods."
 	SERVICES_AND_GOODS = "Trade balance information for services and goods."
+	CURRENT_ACCOUNT_BALANCE = "Current account balance information."
 
 
 L_TB = TradeBalanceLegends
@@ -66,6 +86,9 @@ class TradeBalance(DataGardenSubModel):
 	)
 	services_and_goods: TradeBalanceType = Field(
 		default_factory=TradeBalanceType, description=L_TB.SERVICES_AND_GOODS
+	)
+	current_account_balance: CurrentAccountBalance = Field(
+		default_factory=CurrentAccountBalance, description=L_TB.CURRENT_ACCOUNT_BALANCE
 	)
 
 
