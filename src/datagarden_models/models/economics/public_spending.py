@@ -37,7 +37,7 @@ class PublicSpendingLegends:
 PS = PublicSpendingLegends
 
 
-class PublicSpending(DataGardenSubModel):
+class PublicSpendingV1(DataGardenSubModel):
 	by_cofog_category: PublicSpendingByCofogCategory = Field(
 		default_factory=PublicSpendingByCofogCategory,
 		description=PS.BY_COFOG_CATEGORY,
@@ -45,6 +45,6 @@ class PublicSpending(DataGardenSubModel):
 	total: EconomicsValue = Field(default_factory=EconomicsValue, description=PS.TOTAL)
 
 
-class PublicSpendingKeys(PublicSpendingByCofogCategoryKeys):
+class PublicSpendingV1Keys(PublicSpendingByCofogCategoryKeys):
 	BY_COFOG_CATEGORY = "by_cofog_category"
 	TOTAL = "total"
