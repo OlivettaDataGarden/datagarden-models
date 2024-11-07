@@ -15,6 +15,7 @@ class EconomicsV1Keys(
 	DATAGARDEN_MODEL_NAME = "Economics"
 	INFLATION = "inflation"
 	TRADE = "trade"
+	PUBLIC_SPENDING = "public_spending"
 
 
 class EconomicsV1Legends(DataGardenModelLegends):
