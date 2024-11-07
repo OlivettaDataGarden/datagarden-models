@@ -3,7 +3,7 @@ Changelog
 =========
 
 1.4.10 (2024-11-07)
-------------------
+-------------------
 * Added public spending attributes to economics model
 * Added added current balance to economics model
 
