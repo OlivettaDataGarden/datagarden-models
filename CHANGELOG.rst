@@ -2,7 +2,12 @@
 Changelog
 =========
 
-1.4.6 (2024-11-05)
+1.4.7 (2024-11-07)
+------------------
+* Added public spending attributes to economics model
+* Added added current balance to economics model
+
+1.4.6 (2024-11-06)
 ------------------
 * Added trade attributes to economics model
 * Added added value by economic activity to economics model
