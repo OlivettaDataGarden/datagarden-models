@@ -1,5 +1,7 @@
 from pydantic import Field
 
+from datagarden_models.models.economics.public_spending import PublicSpending
+
 from ..base import DataGardenModel, DataGardenModelLegends
 from .base_economics import EconomicBaseKeys
 from .gdp import GDP, GDPV1Keys
@@ -18,6 +20,7 @@ class EconomicsV1Legends(DataGardenModelLegends):
 	GDP = "Gross Domestic Product"
 	INFLATION = "Inflation numbers"
 	TRADE = "Trade statistics"
+	PUBLIC_SPENDING = "Public spending"
 
 
 L = EconomicsV1Legends
@@ -31,3 +34,6 @@ class EconomicsV1(DataGardenModel):
 	gdp: GDP = Field(default_factory=GDP, description=L.GDP)
 	inflation: Inflation = Field(default_factory=Inflation, description=L.INFLATION)
 	trade: TradeV1 = Field(default_factory=TradeV1, description=L.TRADE)
+	public_spending: PublicSpending = Field(
+		default_factory=PublicSpending, description=L.PUBLIC_SPENDING
+	)
