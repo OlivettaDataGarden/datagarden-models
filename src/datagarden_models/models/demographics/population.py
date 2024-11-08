@@ -68,7 +68,7 @@ class Nativity(DataGardenSubModel):
 ###########################################
 ########## Start Model defenition #########
 ###########################################
-class EthnicityKeys:
+class EthnicityKeys(NativityKeys, MigrationBackgroundKeys):
 	NATIVITY = "nativity"
 	MIGRATION_BACKGROUND = "migration_background"
 
@@ -136,7 +136,7 @@ class Population(DataGardenSubModel):
 	ethnicity: Ethnicity = Field(default_factory=Ethnicity, description=L.ETHNICITY)
 
 
-class PopulationV1Keys:
+class PopulationV1Keys(EthnicityKeys):
 	POPULATION = "population"
 	BY_AGE_GENDER = "by_age_gender"
 	TOTAL = "total"
