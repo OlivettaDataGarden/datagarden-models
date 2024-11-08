@@ -32,6 +32,7 @@ class HousingV1Legends:
 	TENURE = "Ownership status of the house."
 	AVG_REAL_ESTATE_VALUE = "Average value of real estate in the regpion."
 
+
 L = HousingV1Legends
 
 

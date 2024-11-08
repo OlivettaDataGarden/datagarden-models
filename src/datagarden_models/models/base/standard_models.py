@@ -2,7 +2,7 @@ from typing import Optional
 
 from pydantic import Field
 
-from datagarden_models.models.base import DataGardenSubModel
+from .models import DataGardenSubModel
 
 
 class EconomicBaseKeys:
