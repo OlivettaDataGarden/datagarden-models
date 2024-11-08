@@ -10,7 +10,8 @@ class DataGardenModelLegends:
 		"Additional source data that we have not attributed to a common attribute "
 		"in the data model. For understanding the contents of this dataset please "
 		"check documentation of source."
-		)
+	)
+
 
 class Legend:
 	"""A class to handle model and field legends/descriptions for DataGarden models.
