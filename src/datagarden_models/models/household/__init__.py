@@ -7,6 +7,9 @@ from .composition import Composition, CompositionV1Keys
 from .housing import Housing, HousingV1Keys
 
 
+###########################################
+########## Start Model defenition #########
+###########################################
 class HouseholdV1Keys(CompositionV1Keys, HousingV1Keys):
 	DATAGARDEN_MODEL_NAME = "Household"
 	COMPOSITION = "composition"

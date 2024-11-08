@@ -5,6 +5,9 @@ from pydantic import Field
 from datagarden_models.models.base import DataGardenSubModel
 
 
+###########################################
+########## Start Model defenition #########
+###########################################
 class CompositionV1Legends:
 	TYPE = "Composition of households descibing nr and type of household members."
 

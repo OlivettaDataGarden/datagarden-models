@@ -35,7 +35,7 @@ def test_legends_optional_in_annotation():
 
 def test_legends_for_type_dict():
 	class TestModel(DataGardenSubModel):
-		field_name: dict = Field(default=dict, description="test")
+		field_name: dict = Field(default_factory=dict, description="test")
 
 	legend = TestModel.legends()
 		
