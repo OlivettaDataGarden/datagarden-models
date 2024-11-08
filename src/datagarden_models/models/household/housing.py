@@ -2,8 +2,110 @@ from typing import Optional
 
 from pydantic import Field
 
-from datagarden_models.models.base import DataGardenSubModel, EconomicsValue, EconomicBaseKeys
+from datagarden_models.models.base import (
+	DataGardenSubModel,
+	EconomicBaseKeys,
+	EconomicsValue,
+	ValueAndPercentage,
+	ValueAndPercentageKeys,
+)
 
+
+########## Start Model defenition #########
+###########################################
+class DwellingTypeKeys:
+	DETACHED = "detached"
+	SEMI_DETACHED = "semi_detached"
+	ROW_HOUSE = "row_house"
+	APARTMENT = "apartment"
+	BOAT_HOUSE = "boat_house"
+	MOBILE_HOME = "mobile_home"
+
+
+class DwellingTypeLegends:
+	DETACHED = "Detached house."
+	SEMI_DETACHED = "Semi-detached house."
+	ROW_HOUSE = "Row or town house."
+	APARTMENT = "Apartment or flat."
+	BOAT_HOUSE = "Boat house."
+	MOBILE_HOME = "Mobile home."
+
+
+DT = DwellingTypeLegends
+
+
+class DwellingType(DataGardenSubModel):
+	detached: Optional[ValueAndPercentage] = Field(
+		default=None, description=DT.DETACHED
+	)
+	semi_detached: Optional[ValueAndPercentage] = Field(
+		default=None, description=DT.SEMI_DETACHED
+	)
+	row_house: Optional[ValueAndPercentage] = Field(
+		default=None, description=DT.ROW_HOUSE
+	)
+	apartment: Optional[ValueAndPercentage] = Field(
+		default=None, description=DT.APARTMENT
+	)
+	boat_house: Optional[ValueAndPercentage] = Field(
+		default=None, description=DT.BOAT_HOUSE
+	)
+	mobile_home: Optional[ValueAndPercentage] = Field(
+		default=None, description=DT.MOBILE_HOME
+	)
+
+
+###########################################
+########## Start Model defenition #########
+###########################################
+class TenureKeys:
+	OWNED = "owned"
+	RENTED = "rented"
+	INHABITED = "inhabited"
+	SOCIAL_HOUSING = "social_housing"
+
+
+class TenureLegends:
+	OWNED = "Houses owned."
+	RENTED = "Houses rented."
+	INHABITED = "Houses inhabited."
+	SOCIAL_HOUSING = "Social housing."
+
+
+T = TenureLegends
+
+
+class Tenure(DataGardenSubModel):
+	owned: Optional[ValueAndPercentage] = Field(default=None, description=T.OWNED)
+	rented: Optional[ValueAndPercentage] = Field(default=None, description=T.RENTED)
+	inhabited: Optional[ValueAndPercentage] = Field(
+		default=None, description=T.INHABITED
+	)
+	social_housing: Optional[ValueAndPercentage] = Field(
+		default=None, description=T.SOCIAL_HOUSING
+	)
+
+
+###########################################
+########## Start Model defenition #########
+###########################################
+class DwellingKeys:
+	TENURE = "tenure"
+
+
+class DwellingLegends:
+	TENURE = "Ownership status of the house."
+	TYPE = "Type of housing by type in percentage or value."
+
+
+D = DwellingLegends
+
+
+class Dwelling(DataGardenSubModel):
+	type: Optional[dict[str, ValueAndPercentage]] = Field(
+		default=None, description=D.TYPE
+	)
+	tenure: Tenure = Field(default_factory=Tenure, description=D.TENURE)
 
 
 ###########################################
@@ -33,9 +135,8 @@ class HousingCharacteristics(DataGardenSubModel):
 ########## Start Model defenition #########
 ###########################################
 class HousingLegends:
-	DWELLING_TYPE = "Housing type."
+	DWELLING = "Housing categorization."
 	CHARACTERISTICS = "Housing characteristics."
-	TENURE = "Ownership status of the house."
 	AVG_REAL_ESTATE_VALUE = "Average value of real estate in the regpion."
 	HOUSEHOLDS_PER_KM2 = "Number of households per square kilometer."
 	NR_OF_HOUSEHOLDS = "Number of households."
@@ -45,11 +146,10 @@ L = HousingLegends
 
 
 class Housing(DataGardenSubModel):
-	dwelling_type: Optional[str] = Field(default=None, description=L.DWELLING_TYPE)
+	dwelling: Dwelling = Field(default_factory=Dwelling, description=L.DWELLING)
 	characteristics: HousingCharacteristics = Field(
 		default_factory=HousingCharacteristics, description=L.CHARACTERISTICS
 	)
-	tenure: Optional[str] = Field(default=None, description=L.TENURE)
 	avg_real_estate_value: Optional[EconomicsValue] = Field(
 		default=None, description=L.AVG_REAL_ESTATE_VALUE
 	)
@@ -61,7 +161,14 @@ class Housing(DataGardenSubModel):
 	)
 
 
-class HousingKeys(EconomicBaseKeys):
+class HousingKeys(
+	EconomicBaseKeys,
+	DwellingTypeKeys,
+	ValueAndPercentageKeys,
+	TenureKeys,
+	DwellingKeys,
+	HousingCharacteristicsKeys,
+):
 	DWELLING_TYPE = "dwelling_type"
 	CHARACTERISTICS = "characteristics"
 	TENURE = "tenure"
