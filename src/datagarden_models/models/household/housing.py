@@ -2,8 +2,8 @@ from typing import Optional
 
 from pydantic import Field
 
-from datagarden_models.models.base import DataGardenSubModel, EconomicsValue
-from datagarden_models.models.economics.inflation import PriceIndexFixedKeys
+from datagarden_models.models.base import DataGardenSubModel, EconomicsValue, EconomicBaseKeys
+
 
 
 ###########################################
@@ -61,7 +61,7 @@ class Housing(DataGardenSubModel):
 	)
 
 
-class HousingKeys(PriceIndexFixedKeys):
+class HousingKeys(EconomicBaseKeys):
 	DWELLING_TYPE = "dwelling_type"
 	CHARACTERISTICS = "characteristics"
 	TENURE = "tenure"
