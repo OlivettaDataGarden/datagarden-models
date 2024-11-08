@@ -47,7 +47,7 @@ L = HousingLegends
 class Housing(DataGardenSubModel):
 	dwelling_type: Optional[str] = Field(default=None, description=L.DWELLING_TYPE)
 	characteristics: HousingCharacteristics = Field(
-		default=HousingCharacteristics, description=L.CHARACTERISTICS
+		default_factory=HousingCharacteristics, description=L.CHARACTERISTICS
 	)
 	tenure: Optional[str] = Field(default=None, description=L.TENURE)
 	avg_real_estate_value: Optional[EconomicsValue] = Field(
