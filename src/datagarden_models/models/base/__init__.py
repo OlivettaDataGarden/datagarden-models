@@ -1,3 +1,4 @@
+from typing import Optional
 from pydantic import BaseModel, Field, model_validator
 
 from .legend import DataGardenModelLegends, Legend
@@ -47,9 +48,7 @@ class DataGardenModel(DataGardenSubModel):
 		frozen=True,
 		description=DataGardenModelLegends.DATAGARDEN_MODEL_VERSION,
 	)
-
-	class Meta:
-		exclude_fields_in_has_values_check: list[str] = []
+	local_regional_data: Optional[dict] = Field(default=None, description=DataGardenModelLegends.LOCAL_REGIONAL_DATA)
 
 	@model_validator(mode="before")
 	def check_datagarden_model_version(cls, values):
