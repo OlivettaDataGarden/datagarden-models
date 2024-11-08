@@ -2,7 +2,7 @@ from typing import Optional
 
 from pydantic import Field
 
-from datagarden_models.models.base import DataGardenSubModel
+from datagarden_models.models.base import DataGardenSubModel, EconomicsValue
 from datagarden_models.models.economics.inflation import PriceIndexFixedKeys
 
 
@@ -27,11 +27,10 @@ class HousingCharacteristics(DataGardenSubModel):
 
 
 class HousingV1Legends:
-	DWELLING_TYPE = "Type of dwelling."
+	DWELLING_TYPE = "Housing type."
 	CHARACTERISTICS = "Housing characteristics."
-	TENURE = "Tenure of the dwelling."
-	OWNERSHIP = "Ownership status of the house."
-
+	TENURE = "Ownership status of the house."
+	AVG_REAL_ESTATE_VALUE = "Average value of real estate in the regpion."
 
 L = HousingV1Legends
 
@@ -42,6 +41,9 @@ class Housing(DataGardenSubModel):
 		default=HousingCharacteristics, description=L.CHARACTERISTICS
 	)
 	tenure: Optional[str] = Field(default=None, description=L.TENURE)
+	avg_real_estate_value: Optional[EconomicsValue] = Field(
+		default=None, description=L.AVG_REAL_ESTATE_VALUE
+	)
 
 
 class HousingV1Keys(PriceIndexFixedKeys):

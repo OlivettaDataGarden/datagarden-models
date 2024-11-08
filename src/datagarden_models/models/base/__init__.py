@@ -3,6 +3,7 @@ from typing import Optional
 from pydantic import BaseModel, Field, model_validator
 
 from .legend import DataGardenModelLegends, Legend
+from .standard_models import EconomicsValue
 
 
 class DataGardenSubModel(BaseModel):
@@ -62,3 +63,6 @@ class DataGardenModel(DataGardenSubModel):
 		):
 			raise ValueError("The field 'datagarden_model_version' is immutable.")
 		return values
+
+
+__all__ = ["EconomicsValue", "DataGardenSubModel", "DataGardenModel"]
