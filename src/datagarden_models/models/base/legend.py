@@ -6,6 +6,11 @@ from pydantic import BaseModel
 
 class DataGardenModelLegends:
 	DATAGARDEN_MODEL_VERSION: str = "Version of the data model."
+	LOCAL_REGIONAL_DATA: str = (
+		"Additional source data that we have not attributed to a common attribute "
+		"in the data model. For understanding the contents of this dataset please "
+		"check documentation of source."
+	)
 
 
 class Legend:
