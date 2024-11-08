@@ -3,14 +3,14 @@ from pydantic import Field
 from datagarden_models.models.base import DataGardenModel
 from datagarden_models.models.base.legend import DataGardenModelLegends
 
-from .composition import Composition, CompositionV1Keys
-from .housing import Housing, HousingV1Keys
+from .composition import Composition, CompositionKeys
+from .housing import Housing, HousingKeys
 
 
 ###########################################
 ########## Start Model defenition #########
 ###########################################
-class HouseholdV1Keys(CompositionV1Keys, HousingV1Keys):
+class HouseholdV1Keys(CompositionKeys, HousingKeys):
 	DATAGARDEN_MODEL_NAME = "Household"
 	COMPOSITION = "composition"
 	HOUSING = "housing"
