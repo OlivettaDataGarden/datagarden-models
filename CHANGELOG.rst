@@ -2,6 +2,11 @@
 Changelog
 =========
 
+1.5.0 (2024-11-08)
+-------------------
+* Added new HouseHold model to contain data on household characteristics
+* Added ethnicity submodel to demographics - population model
+
 1.4.10 (2024-11-07)
 -------------------
 * Added public spending attributes to economics model
