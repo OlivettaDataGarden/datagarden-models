@@ -102,9 +102,7 @@ D = DwellingLegends
 
 
 class Dwelling(DataGardenSubModel):
-	type: Optional[dict[str, ValueAndPercentage]] = Field(
-		default=None, description=D.TYPE
-	)
+	type: DwellingType = Field(default_factory=DwellingType, description=D.TYPE)
 	tenure: Tenure = Field(default_factory=Tenure, description=D.TENURE)
 
 
@@ -126,7 +124,7 @@ HC = HousingCharacteristicsLegends
 
 class HousingCharacteristics(DataGardenSubModel):
 	number_of_rooms: Optional[int] = Field(default=None, description=HC.NUMBER_OF_ROOMS)
-	construction_period: Optional[str] = Field(
+	construction_period: Optional[dict[str, ValueAndPercentage]] = Field(
 		default=None, description=HC.CONSTRUCTION_PERIOD
 	)
 
@@ -169,7 +167,7 @@ class HousingKeys(
 	DwellingKeys,
 	HousingCharacteristicsKeys,
 ):
-	DWELLING_TYPE = "dwelling_type"
+	DWELLING = "dwelling"
 	CHARACTERISTICS = "characteristics"
 	TENURE = "tenure"
 	AVG_REAL_ESTATE_VALUE = "avg_real_estate_value"

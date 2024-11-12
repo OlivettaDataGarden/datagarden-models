@@ -5,21 +5,22 @@ from datagarden_models.models.base.legend import DataGardenModelLegends
 
 from .composition import Composition, CompositionKeys
 from .housing import Housing, HousingKeys
+from .economics import Economics, EconomicsKeys
 
 
 ###########################################
 ########## Start Model defenition #########
 ###########################################
-class HouseholdV1Keys(CompositionKeys, HousingKeys):
+class HouseholdV1Keys(CompositionKeys, HousingKeys, EconomicsKeys):
 	DATAGARDEN_MODEL_NAME = "Household"
 	COMPOSITION = "composition"
 	HOUSING = "housing"
-
+	ECONOMICS = "economics"
 
 class HouseholdV1Legends(DataGardenModelLegends):
 	COMPOSITION = "Data on composition of households for a region. "
 	HOUSING = "Data on housing for a region. "
-
+	ECONOMICS = "Data on household economics for a region. "
 
 L = HouseholdV1Legends
 
@@ -30,3 +31,4 @@ class HouseholdV1(DataGardenModel):
 		default_factory=Composition, description=L.COMPOSITION
 	)
 	housing: Housing = Field(default_factory=Housing, description=L.HOUSING)
+	economics: Economics = Field(default_factory=Economics, description=L.ECONOMICS)
