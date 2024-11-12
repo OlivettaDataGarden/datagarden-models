@@ -2,6 +2,8 @@ from typing import Optional
 
 from pydantic import Field
 
+from datagarden_models.models.base.standard_models import ValueAndPercentage
+
 from ..base import DataGardenSubModel
 from .base_demographics import AgeGender
 
@@ -10,26 +12,41 @@ from .base_demographics import AgeGender
 ########## Start Model defenition #########
 ###########################################
 class MigrationBackgroundKeys:
-	PERCENTAGE_OF_POPULATION = "percentage_of_population"
-	POPULATION_COUNT = "population_count"
+	SECOND_GENERATION = "second_generation"
+	NATIVE = "native"
+	FOREIGN_BORN = "foreign_born"
+	WESTERN_BACKGROUND = "western_background"
+	NON_WESTERN_BACKGROUND = "non_western_background"
 
 
 class MigrationBackgroundLegends:
-	PERCENTAGE_OF_POPULATION = (
-		"Percentage of the population by type of migration background."
+	NATIVE = "Native population."
+	SECOND_GENERATION = "Population with at least one non nantive parent."
+	FOREIGN_BORN = "Population with foreign background."
+	WESTERN_BACKGROUND = (
+		"Population with Western background (usually not incuding native borns)."
 	)
-	POPULATION_COUNT = "Number of individuals with a given migration background."
+	NON_WESTERN_BACKGROUND = "Population with Non-western background."
 
 
 MB = MigrationBackgroundLegends
 
 
 class MigrationBackground(DataGardenSubModel):
-	percentage_of_population: Optional[float] = Field(
-		default=None, description=MB.PERCENTAGE_OF_POPULATION
+	native: Optional[ValueAndPercentage] = Field(
+		default=None, description=MB.NATIVE
 	)
-	population_count: Optional[float] = Field(
-		default=None, description=MB.POPULATION_COUNT
+	second_generation: Optional[ValueAndPercentage] = Field(
+		default=None, description=MB.SECOND_GENERATION
+	)
+	foreign_born: Optional[ValueAndPercentage] = Field(
+		default=None, description=MB.FOREIGN_BORN
+	)
+	western_background: Optional[ValueAndPercentage] = Field(
+		default=None, description=MB.WESTERN_BACKGROUND
+	)
+	non_western_background: Optional[ValueAndPercentage] = Field(
+		default=None, description=MB.NON_WESTERN_BACKGROUND
 	)
 
 
