@@ -2,7 +2,7 @@
 Changelog
 =========
 
-1.5.4 (2024-11-08)
+1.5.5 (2024-11-12)
 -------------------
 * Added new HouseHold model to contain data on household characteristics
 * Added ethnicity submodel to demographics - population model
