@@ -33,9 +33,7 @@ MB = MigrationBackgroundLegends
 
 
 class MigrationBackground(DataGardenSubModel):
-	native: Optional[ValueAndPercentage] = Field(
-		default=None, description=MB.NATIVE
-	)
+	native: Optional[ValueAndPercentage] = Field(default=None, description=MB.NATIVE)
 	second_generation: Optional[ValueAndPercentage] = Field(
 		default=None, description=MB.SECOND_GENERATION
 	)

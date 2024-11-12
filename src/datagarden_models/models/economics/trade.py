@@ -11,13 +11,12 @@ class CurrentAccountBalanceLegends:
 	BALANCE = "Current account balance."
 	PERCENTAGE_OF_GDP = "Current accounts as a percentage of GDP."
 
+
 CA = CurrentAccountBalanceLegends
 
 
 class CurrentAccountBalance(DataGardenSubModel):
-	balance: Optional[EconomicsValue] = Field(
-		default=None, description=CA.BALANCE
-	)
+	balance: Optional[EconomicsValue] = Field(default=None, description=CA.BALANCE)
 	percentage_of_gdp: Optional[float] = Field(
 		default=None, description=CA.PERCENTAGE_OF_GDP
 	)

@@ -4,10 +4,10 @@ from pydantic import Field
 
 from .models import DataGardenSubModel
 
-
 ###########################################
 ########## Start Model defenition #########
 ###########################################
+
 
 class EconomicBaseKeys:
 	VALUE = "value"
@@ -30,7 +30,8 @@ class EconomicsValue(DataGardenSubModel):
 	currency: str = Field(default="EUR", description=L.CURRENCY)
 
 	class Meta:
-		exclude_fields_in_has_values_check: list[str] = ['unit', 'currency']
+		exclude_fields_in_has_values_check: list[str] = ["unit", "currency"]
+
 
 ###########################################
 ########## Start Model defenition #########
@@ -40,6 +41,7 @@ class ValueAndPercentageKeys:
 	PERCENTAGE = "percentage"
 	UNIT = "unit"
 	COUNT = "count"
+
 
 class CountValueAndPercentageLegends:
 	VALUE = "value in units of given currency,"
@@ -58,6 +60,4 @@ class ValueAndPercentage(DataGardenSubModel):
 	count: Optional[float] = Field(default=None, description=VP.COUNT)
 
 	class Meta:
-		exclude_fields_in_has_values_check: list[str] = ['unit']
-
-	
+		exclude_fields_in_has_values_check: list[str] = ["unit"]
