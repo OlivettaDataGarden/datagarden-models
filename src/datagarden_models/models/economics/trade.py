@@ -3,21 +3,21 @@ from typing import Annotated, Optional
 from pydantic import Field
 
 from datagarden_models.models.base import DataGardenSubModel
+from datagarden_models.models.base.standard_models import EconomicsValue
 
 
 ########## Start Model defenition #########
 class CurrentAccountBalanceLegends:
-	VALUE = "Current account balance value."
-	CURRENCY = "Currency of the trade balance value."
+	BALANCE = "Current account balance."
 	PERCENTAGE_OF_GDP = "Current accounts as a percentage of GDP."
-
 
 CA = CurrentAccountBalanceLegends
 
 
 class CurrentAccountBalance(DataGardenSubModel):
-	value: Optional[float] = Field(default=None, description=CA.VALUE)
-	currency: Optional[str] = Field(default=None, description=CA.CURRENCY)
+	balance: Optional[EconomicsValue] = Field(
+		default=None, description=CA.BALANCE
+	)
 	percentage_of_gdp: Optional[float] = Field(
 		default=None, description=CA.PERCENTAGE_OF_GDP
 	)
@@ -25,16 +25,14 @@ class CurrentAccountBalance(DataGardenSubModel):
 
 ########## Start Model defenition #########
 class TradeBalanceTypeKeys:
-	VALUE = "value"
-	CURRENCY = "currency"
+	BALANCE = "balance"
 	PERCENTAGE_OF_IMPORTS = "percentage_of_imports"
 	PERCENTAGE_OF_GDP = "percentage_of_gdp"
 	NORMALIZED_TRADE_BALANCE = "normalized_trade_balance"
 
 
 class TradeBalanceTypeLegends:
-	VALUE = "Trade balance value."
-	CURRENCY = "Currency of the trade balance value."
+	BALANCE = "Trade balance."
 	PERCENTAGE_OF_IMPORTS = "Trade balance as a percentage of imports."
 	PERCENTAGE_OF_GDP = "Trade balance as a percentage of GDP."
 	NORMALIZED_TRADE_BALANCE = (
@@ -46,8 +44,7 @@ PI = TradeBalanceTypeLegends
 
 
 class TradeBalanceType(DataGardenSubModel):
-	value: Optional[float] = Field(default=None, description=PI.VALUE)
-	currency: Optional[str] = Field(default=None, description=PI.CURRENCY)
+	balance: Optional[EconomicsValue] = Field(default=None, description=PI.BALANCE)
 	percentage_of_imports: Optional[float] = Field(
 		default=None, description=PI.PERCENTAGE_OF_IMPORTS
 	)
